@@ -1,0 +1,5134 @@
+---
+swagger: "2.0"
+info:
+  description: "Api Documentation"
+  version: "1.0"
+  title: "Api Documentation"
+  termsOfService: "urn:tos"
+  contact: {}
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0"
+host: "localhost:8080"
+basePath: "/"
+tags:
+- name: "analytics-resource"
+  description: "Analytics Resource"
+- name: "card-resource"
+  description: "Card Resource"
+- name: "charging-log-resource"
+  description: "Charging Log Resource"
+- name: "company-props-resource"
+  description: "Company Props Resource"
+- name: "company-resource"
+  description: "Company Resource"
+- name: "coupon-resource"
+  description: "Coupon Resource"
+- name: "endpoints"
+  description: "Endpoints"
+- name: "history-resource"
+  description: "History Resource"
+- name: "invoice-resource"
+  description: "Invoice Resource"
+- name: "message-template-resource"
+  description: "Message Template Resource"
+- name: "offer-resource"
+  description: "Offer Resource"
+- name: "profile-info-resource"
+  description: "Profile Info Resource"
+- name: "service-instance-resource"
+  description: "Service Instance Resource"
+- name: "service-offering-resource"
+  description: "Service Offering Resource"
+- name: "service-resource"
+  description: "Service Resource"
+- name: "subscriber-resource"
+  description: "Subscriber Resource"
+- name: "subsription-resource"
+  description: "Subsription Resource"
+- name: "usage-notification-resource"
+  description: "Usage Notification Resource"
+- name: "user-resource"
+  description: "User Resource"
+paths:
+  /api/analytics/dashboard:
+    get:
+      tags:
+      - "analytics-resource"
+      summary: "getDashboardAnalytics"
+      operationId: "getDashboardAnalyticsUsingGET"
+      produces:
+      - "*/*"
+      parameters: []
+      responses:
+        200:
+          description: "OK"
+          schema:
+            type: "object"
+            properties: {}
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+        404:
+          description: "Not Found"
+      security:
+      - apiKey:
+        - "global"
+  /api/authorize:
+    put:
+      tags:
+      - "endpoints"
+      summary: "authorize"
+      operationId: "authorizeUsingPUT"
+      consumes:
+      - "application/json"
+      produces:
+      - "*/*"
+      parameters:
+      - in: "body"
+        name: "authorization"
+        description: "authorization"
+        required: true
+        schema:
+          $ref: "#/definitions/Authorization"
+        x-exportParamName: "Authorization"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            type: "boolean"
+        201:
+          description: "Created"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+        404:
+          description: "Not Found"
+      security:
+      - apiKey:
+        - "global"
+  /api/cards:
+    get:
+      tags:
+      - "card-resource"
+      summary: "getAllCards"
+      operationId: "getAllCardsUsingGET"
+      produces:
+      - "*/*"
+      parameters: []
+      responses:
+        200:
+          description: "OK"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/SavedCard"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+        404:
+          description: "Not Found"
+      security:
+      - apiKey:
+        - "global"
+    post:
+      tags:
+      - "card-resource"
+      summary: "createCard"
+      operationId: "createCardUsingPOST"
+      consumes:
+      - "application/json"
+      produces:
+      - "*/*"
+      parameters:
+      - in: "body"
+        name: "card"
+        description: "card"
+        required: true
+        schema:
+          $ref: "#/definitions/SavedCard"
+        x-exportParamName: "Card"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/SavedCard"
+        201:
+          description: "Created"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+        404:
+          description: "Not Found"
+      security:
+      - apiKey:
+        - "global"
+    put:
+      tags:
+      - "card-resource"
+      summary: "updateCard"
+      operationId: "updateCardUsingPUT"
+      consumes:
+      - "application/json"
+      produces:
+      - "*/*"
+      parameters:
+      - in: "body"
+        name: "card"
+        description: "card"
+        required: true
+        schema:
+          $ref: "#/definitions/SavedCard"
+        x-exportParamName: "Card"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/SavedCard"
+        201:
+          description: "Created"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+        404:
+          description: "Not Found"
+      security:
+      - apiKey:
+        - "global"
+  /api/cards/{id}:
+    get:
+      tags:
+      - "card-resource"
+      summary: "getCard"
+      operationId: "getCardUsingGET"
+      produces:
+      - "*/*"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "id"
+        required: true
+        type: "integer"
+        format: "int64"
+        x-exportParamName: "Id"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/SavedCard"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+        404:
+          description: "Not Found"
+      security:
+      - apiKey:
+        - "global"
+    delete:
+      tags:
+      - "card-resource"
+      summary: "deleteCard"
+      operationId: "deleteCardUsingDELETE"
+      produces:
+      - "*/*"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "id"
+        required: true
+        type: "integer"
+        format: "int64"
+        x-exportParamName: "Id"
+      responses:
+        200:
+          description: "OK"
+        204:
+          description: "No Content"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+      security:
+      - apiKey:
+        - "global"
+  /api/charging-logs:
+    get:
+      tags:
+      - "charging-log-resource"
+      summary: "getAllChargingLogs"
+      operationId: "getAllChargingLogsUsingGET"
+      produces:
+      - "*/*"
+      parameters:
+      - name: "page"
+        in: "query"
+        description: "Page number of the requested page"
+        required: false
+        type: "integer"
+        format: "int32"
+        x-exportParamName: "Page"
+      - name: "size"
+        in: "query"
+        description: "Size of a page"
+        required: false
+        type: "integer"
+        format: "int32"
+        x-exportParamName: "Size"
+      - name: "sort"
+        in: "query"
+        description: "Sorting criteria in the format: property(,asc|desc). Default\
+          \ sort order is ascending. Multiple sort criteria are supported."
+        required: false
+        type: "array"
+        items:
+          type: "string"
+        collectionFormat: "multi"
+        x-exportParamName: "Sort"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/ChargingLog"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+        404:
+          description: "Not Found"
+      security:
+      - apiKey:
+        - "global"
+    post:
+      tags:
+      - "charging-log-resource"
+      summary: "createChargingLog"
+      operationId: "createChargingLogUsingPOST"
+      consumes:
+      - "application/json"
+      produces:
+      - "*/*"
+      parameters:
+      - in: "body"
+        name: "chargingLog"
+        description: "chargingLog"
+        required: true
+        schema:
+          $ref: "#/definitions/ChargingLog"
+        x-exportParamName: "ChargingLog"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/ChargingLog"
+        201:
+          description: "Created"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+        404:
+          description: "Not Found"
+      security:
+      - apiKey:
+        - "global"
+    put:
+      tags:
+      - "charging-log-resource"
+      summary: "updateChargingLog"
+      operationId: "updateChargingLogUsingPUT"
+      consumes:
+      - "application/json"
+      produces:
+      - "*/*"
+      parameters:
+      - in: "body"
+        name: "chargingLog"
+        description: "chargingLog"
+        required: true
+        schema:
+          $ref: "#/definitions/ChargingLog"
+        x-exportParamName: "ChargingLog"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/ChargingLog"
+        201:
+          description: "Created"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+        404:
+          description: "Not Found"
+      security:
+      - apiKey:
+        - "global"
+  /api/charging-logs-totalamount-customer/{id}:
+    get:
+      tags:
+      - "endpoints"
+      summary: "getTotalRevenuePerMonth"
+      operationId: "getTotalRevenuePerMonthUsingGET"
+      produces:
+      - "*/*"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "id"
+        required: true
+        type: "integer"
+        format: "int64"
+        x-exportParamName: "Id"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            type: "array"
+            items:
+              type: "object"
+              properties: {}
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+        404:
+          description: "Not Found"
+      security:
+      - apiKey:
+        - "global"
+  /api/charging-logs/refund/{chargingLogId}:
+    post:
+      tags:
+      - "charging-log-resource"
+      summary: "refund"
+      operationId: "refundUsingPOST"
+      consumes:
+      - "application/json"
+      produces:
+      - "*/*"
+      parameters:
+      - name: "chargingLogId"
+        in: "path"
+        description: "chargingLogId"
+        required: true
+        type: "integer"
+        format: "int64"
+        x-exportParamName: "ChargingLogId"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/ChargingLog"
+        201:
+          description: "Created"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+        404:
+          description: "Not Found"
+      security:
+      - apiKey:
+        - "global"
+  /api/charging-logs/subscription/{id}:
+    get:
+      tags:
+      - "endpoints"
+      summary: "getChargingLogBySubscription"
+      operationId: "getChargingLogBySubscriptionUsingGET"
+      produces:
+      - "*/*"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "id"
+        required: true
+        type: "integer"
+        format: "int64"
+        x-exportParamName: "Id"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/ChargingLog"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+        404:
+          description: "Not Found"
+      security:
+      - apiKey:
+        - "global"
+  /api/charging-logs/{id}:
+    get:
+      tags:
+      - "charging-log-resource"
+      summary: "getChargingLog"
+      operationId: "getChargingLogUsingGET"
+      produces:
+      - "*/*"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "id"
+        required: true
+        type: "integer"
+        format: "int64"
+        x-exportParamName: "Id"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/ChargingLog"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+        404:
+          description: "Not Found"
+      security:
+      - apiKey:
+        - "global"
+    delete:
+      tags:
+      - "charging-log-resource"
+      summary: "deleteChargingLog"
+      operationId: "deleteChargingLogUsingDELETE"
+      produces:
+      - "*/*"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "id"
+        required: true
+        type: "integer"
+        format: "int64"
+        x-exportParamName: "Id"
+      responses:
+        200:
+          description: "OK"
+        204:
+          description: "No Content"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+      security:
+      - apiKey:
+        - "global"
+  /api/companies:
+    get:
+      tags:
+      - "company-resource"
+      summary: "getAllCompanies"
+      operationId: "getAllCompaniesUsingGET"
+      produces:
+      - "*/*"
+      parameters: []
+      responses:
+        200:
+          description: "OK"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Company"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+        404:
+          description: "Not Found"
+      security:
+      - apiKey:
+        - "global"
+    post:
+      tags:
+      - "company-resource"
+      summary: "createCompany"
+      operationId: "createCompanyUsingPOST"
+      consumes:
+      - "application/json"
+      produces:
+      - "*/*"
+      parameters:
+      - in: "body"
+        name: "company"
+        description: "company"
+        required: true
+        schema:
+          $ref: "#/definitions/Company"
+        x-exportParamName: "Company"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/Company"
+        201:
+          description: "Created"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+        404:
+          description: "Not Found"
+      security:
+      - apiKey:
+        - "global"
+    put:
+      tags:
+      - "company-resource"
+      summary: "updateCompany"
+      operationId: "updateCompanyUsingPUT"
+      consumes:
+      - "application/json"
+      produces:
+      - "*/*"
+      parameters:
+      - in: "body"
+        name: "company"
+        description: "company"
+        required: true
+        schema:
+          $ref: "#/definitions/Company"
+        x-exportParamName: "Company"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/Company"
+        201:
+          description: "Created"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+        404:
+          description: "Not Found"
+      security:
+      - apiKey:
+        - "global"
+  /api/companies/{id}:
+    get:
+      tags:
+      - "company-resource"
+      summary: "getCompany"
+      operationId: "getCompanyUsingGET"
+      produces:
+      - "*/*"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "id"
+        required: true
+        type: "integer"
+        format: "int64"
+        x-exportParamName: "Id"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/Company"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+        404:
+          description: "Not Found"
+      security:
+      - apiKey:
+        - "global"
+    delete:
+      tags:
+      - "company-resource"
+      summary: "deleteCompany"
+      operationId: "deleteCompanyUsingDELETE"
+      produces:
+      - "*/*"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "id"
+        required: true
+        type: "integer"
+        format: "int64"
+        x-exportParamName: "Id"
+      responses:
+        200:
+          description: "OK"
+        204:
+          description: "No Content"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+      security:
+      - apiKey:
+        - "global"
+  /api/company-props:
+    get:
+      tags:
+      - "company-props-resource"
+      summary: "getAllCompanyProps"
+      operationId: "getAllCompanyPropsUsingGET"
+      produces:
+      - "*/*"
+      parameters: []
+      responses:
+        200:
+          description: "OK"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/CompanyProps"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+        404:
+          description: "Not Found"
+      security:
+      - apiKey:
+        - "global"
+    post:
+      tags:
+      - "company-props-resource"
+      summary: "createCompanyProps"
+      operationId: "createCompanyPropsUsingPOST"
+      consumes:
+      - "application/json"
+      produces:
+      - "*/*"
+      parameters:
+      - in: "body"
+        name: "companyProps"
+        description: "companyProps"
+        required: true
+        schema:
+          $ref: "#/definitions/CompanyProps"
+        x-exportParamName: "CompanyProps"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/CompanyProps"
+        201:
+          description: "Created"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+        404:
+          description: "Not Found"
+      security:
+      - apiKey:
+        - "global"
+    put:
+      tags:
+      - "company-props-resource"
+      summary: "updateCompanyProps"
+      operationId: "updateCompanyPropsUsingPUT"
+      consumes:
+      - "application/json"
+      produces:
+      - "*/*"
+      parameters:
+      - in: "body"
+        name: "companyProps"
+        description: "companyProps"
+        required: true
+        schema:
+          $ref: "#/definitions/CompanyProps"
+        x-exportParamName: "CompanyProps"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/CompanyProps"
+        201:
+          description: "Created"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+        404:
+          description: "Not Found"
+      security:
+      - apiKey:
+        - "global"
+  /api/company-props/company/{companyId}:
+    get:
+      tags:
+      - "company-props-resource"
+      summary: "getCompanyPropsByCompanyId"
+      operationId: "getCompanyPropsByCompanyIdUsingGET"
+      produces:
+      - "*/*"
+      parameters:
+      - name: "companyId"
+        in: "path"
+        description: "companyId"
+        required: true
+        type: "integer"
+        format: "int64"
+        x-exportParamName: "CompanyId"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/CompanyProps"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+        404:
+          description: "Not Found"
+      security:
+      - apiKey:
+        - "global"
+  /api/company-props/{id}:
+    delete:
+      tags:
+      - "company-props-resource"
+      summary: "deleteCompanyProps"
+      operationId: "deleteCompanyPropsUsingDELETE"
+      produces:
+      - "*/*"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "id"
+        required: true
+        type: "integer"
+        format: "int64"
+        x-exportParamName: "Id"
+      responses:
+        200:
+          description: "OK"
+        204:
+          description: "No Content"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+      security:
+      - apiKey:
+        - "global"
+  /api/coupons:
+    get:
+      tags:
+      - "coupon-resource"
+      summary: "getAllCoupons"
+      operationId: "getAllCouponsUsingGET"
+      produces:
+      - "*/*"
+      parameters: []
+      responses:
+        200:
+          description: "OK"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Coupon"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+        404:
+          description: "Not Found"
+      security:
+      - apiKey:
+        - "global"
+    post:
+      tags:
+      - "coupon-resource"
+      summary: "createCoupon"
+      operationId: "createCouponUsingPOST"
+      consumes:
+      - "application/json"
+      produces:
+      - "*/*"
+      parameters:
+      - in: "body"
+        name: "coupon"
+        description: "coupon"
+        required: true
+        schema:
+          $ref: "#/definitions/Coupon"
+        x-exportParamName: "Coupon"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/Coupon"
+        201:
+          description: "Created"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+        404:
+          description: "Not Found"
+      security:
+      - apiKey:
+        - "global"
+    put:
+      tags:
+      - "coupon-resource"
+      summary: "updateCoupon"
+      operationId: "updateCouponUsingPUT"
+      consumes:
+      - "application/json"
+      produces:
+      - "*/*"
+      parameters:
+      - in: "body"
+        name: "coupon"
+        description: "coupon"
+        required: true
+        schema:
+          $ref: "#/definitions/Coupon"
+        x-exportParamName: "Coupon"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/Coupon"
+        201:
+          description: "Created"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+        404:
+          description: "Not Found"
+      security:
+      - apiKey:
+        - "global"
+  /api/coupons/{id}:
+    get:
+      tags:
+      - "coupon-resource"
+      summary: "getCoupon"
+      operationId: "getCouponUsingGET"
+      produces:
+      - "*/*"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "id"
+        required: true
+        type: "integer"
+        format: "int64"
+        x-exportParamName: "Id"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/Coupon"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+        404:
+          description: "Not Found"
+      security:
+      - apiKey:
+        - "global"
+    delete:
+      tags:
+      - "coupon-resource"
+      summary: "deleteCoupon"
+      operationId: "deleteCouponUsingDELETE"
+      produces:
+      - "*/*"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "id"
+        required: true
+        type: "integer"
+        format: "int64"
+        x-exportParamName: "Id"
+      responses:
+        200:
+          description: "OK"
+        204:
+          description: "No Content"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+      security:
+      - apiKey:
+        - "global"
+  /api/customer-totalAmountCharge/{id}:
+    get:
+      tags:
+      - "endpoints"
+      summary: "getCustomerTotalAmount"
+      operationId: "getCustomerTotalAmountUsingGET"
+      produces:
+      - "*/*"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "id"
+        required: true
+        type: "string"
+        x-exportParamName: "Id"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            type: "integer"
+            format: "int64"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+        404:
+          description: "Not Found"
+      security:
+      - apiKey:
+        - "global"
+  /api/deduct:
+    put:
+      tags:
+      - "endpoints"
+      summary: "deduct"
+      operationId: "deductUsingPUT"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "deduction"
+        description: "deduction"
+        required: true
+        schema:
+          $ref: "#/definitions/Deduction"
+        x-exportParamName: "Deduction"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/DeductionResult"
+        201:
+          description: "Created"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+        404:
+          description: "Not Found"
+      security:
+      - apiKey:
+        - "global"
+  /api/getInvoiceDetails:
+    get:
+      tags:
+      - "endpoints"
+      summary: "getInvoiceDetails"
+      operationId: "getInvoiceDetailsUsingGET"
+      produces:
+      - "*/*"
+      parameters:
+      - in: "body"
+        name: "invoiceRequest"
+        description: "invoiceRequest"
+        required: true
+        schema:
+          $ref: "#/definitions/InvoiceRequest"
+        x-exportParamName: "InvoiceRequest"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            type: "object"
+            properties: {}
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+        404:
+          description: "Not Found"
+      security:
+      - apiKey:
+        - "global"
+  /api/histories:
+    get:
+      tags:
+      - "history-resource"
+      summary: "getAllHistories"
+      operationId: "getAllHistoriesUsingGET"
+      produces:
+      - "*/*"
+      parameters: []
+      responses:
+        200:
+          description: "OK"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/History"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+        404:
+          description: "Not Found"
+      security:
+      - apiKey:
+        - "global"
+    post:
+      tags:
+      - "history-resource"
+      summary: "createHistory"
+      operationId: "createHistoryUsingPOST"
+      consumes:
+      - "application/json"
+      produces:
+      - "*/*"
+      parameters:
+      - in: "body"
+        name: "history"
+        description: "history"
+        required: true
+        schema:
+          $ref: "#/definitions/History"
+        x-exportParamName: "History"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/History"
+        201:
+          description: "Created"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+        404:
+          description: "Not Found"
+      security:
+      - apiKey:
+        - "global"
+    put:
+      tags:
+      - "history-resource"
+      summary: "updateHistory"
+      operationId: "updateHistoryUsingPUT"
+      consumes:
+      - "application/json"
+      produces:
+      - "*/*"
+      parameters:
+      - in: "body"
+        name: "history"
+        description: "history"
+        required: true
+        schema:
+          $ref: "#/definitions/History"
+        x-exportParamName: "History"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/History"
+        201:
+          description: "Created"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+        404:
+          description: "Not Found"
+      security:
+      - apiKey:
+        - "global"
+  /api/histories/{id}:
+    get:
+      tags:
+      - "history-resource"
+      summary: "getHistory"
+      operationId: "getHistoryUsingGET"
+      produces:
+      - "*/*"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "id"
+        required: true
+        type: "integer"
+        format: "int64"
+        x-exportParamName: "Id"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/History"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+        404:
+          description: "Not Found"
+      security:
+      - apiKey:
+        - "global"
+    delete:
+      tags:
+      - "history-resource"
+      summary: "deleteHistory"
+      operationId: "deleteHistoryUsingDELETE"
+      produces:
+      - "*/*"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "id"
+        required: true
+        type: "integer"
+        format: "int64"
+        x-exportParamName: "Id"
+      responses:
+        200:
+          description: "OK"
+        204:
+          description: "No Content"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+      security:
+      - apiKey:
+        - "global"
+  /api/invoices:
+    get:
+      tags:
+      - "invoice-resource"
+      summary: "getAllInvoices"
+      operationId: "getAllInvoicesUsingGET"
+      produces:
+      - "*/*"
+      parameters: []
+      responses:
+        200:
+          description: "OK"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Invoice"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+        404:
+          description: "Not Found"
+      security:
+      - apiKey:
+        - "global"
+    post:
+      tags:
+      - "invoice-resource"
+      summary: "createInvoice"
+      operationId: "createInvoiceUsingPOST"
+      consumes:
+      - "application/json"
+      produces:
+      - "*/*"
+      parameters:
+      - in: "body"
+        name: "invoice"
+        description: "invoice"
+        required: true
+        schema:
+          $ref: "#/definitions/Invoice"
+        x-exportParamName: "Invoice"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/Invoice"
+        201:
+          description: "Created"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+        404:
+          description: "Not Found"
+      security:
+      - apiKey:
+        - "global"
+    put:
+      tags:
+      - "invoice-resource"
+      summary: "updateInvoice"
+      operationId: "updateInvoiceUsingPUT"
+      consumes:
+      - "application/json"
+      produces:
+      - "*/*"
+      parameters:
+      - in: "body"
+        name: "invoice"
+        description: "invoice"
+        required: true
+        schema:
+          $ref: "#/definitions/Invoice"
+        x-exportParamName: "Invoice"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/Invoice"
+        201:
+          description: "Created"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+        404:
+          description: "Not Found"
+      security:
+      - apiKey:
+        - "global"
+  /api/invoices/subscriber/{subscriberSecureId}:
+    get:
+      tags:
+      - "invoice-resource"
+      summary: "getInvoiceBySubscriber"
+      operationId: "getInvoiceBySubscriberUsingGET"
+      produces:
+      - "*/*"
+      parameters:
+      - name: "subscriberSecureId"
+        in: "path"
+        description: "subscriberSecureId"
+        required: true
+        type: "string"
+        x-exportParamName: "SubscriberSecureId"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Invoice"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+        404:
+          description: "Not Found"
+      security:
+      - apiKey:
+        - "global"
+  /api/invoices/{id}:
+    get:
+      tags:
+      - "invoice-resource"
+      summary: "getInvoice"
+      operationId: "getInvoiceUsingGET"
+      produces:
+      - "*/*"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "id"
+        required: true
+        type: "integer"
+        format: "int64"
+        x-exportParamName: "Id"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/Invoice"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+        404:
+          description: "Not Found"
+      security:
+      - apiKey:
+        - "global"
+    delete:
+      tags:
+      - "invoice-resource"
+      summary: "deleteInvoice"
+      operationId: "deleteInvoiceUsingDELETE"
+      produces:
+      - "*/*"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "id"
+        required: true
+        type: "integer"
+        format: "int64"
+        x-exportParamName: "Id"
+      responses:
+        200:
+          description: "OK"
+        204:
+          description: "No Content"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+      security:
+      - apiKey:
+        - "global"
+  /api/message-templates:
+    get:
+      tags:
+      - "message-template-resource"
+      summary: "getAllMessageTemplates"
+      operationId: "getAllMessageTemplatesUsingGET"
+      produces:
+      - "*/*"
+      parameters: []
+      responses:
+        200:
+          description: "OK"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/MessageTemplate"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+        404:
+          description: "Not Found"
+      security:
+      - apiKey:
+        - "global"
+    post:
+      tags:
+      - "message-template-resource"
+      summary: "createMessageTemplate"
+      operationId: "createMessageTemplateUsingPOST"
+      consumes:
+      - "application/json"
+      produces:
+      - "*/*"
+      parameters:
+      - in: "body"
+        name: "messageTemplate"
+        description: "messageTemplate"
+        required: true
+        schema:
+          $ref: "#/definitions/MessageTemplate"
+        x-exportParamName: "MessageTemplate"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/MessageTemplate"
+        201:
+          description: "Created"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+        404:
+          description: "Not Found"
+      security:
+      - apiKey:
+        - "global"
+    put:
+      tags:
+      - "message-template-resource"
+      summary: "updateMessageTemplate"
+      operationId: "updateMessageTemplateUsingPUT"
+      consumes:
+      - "application/json"
+      produces:
+      - "*/*"
+      parameters:
+      - in: "body"
+        name: "messageTemplate"
+        description: "messageTemplate"
+        required: true
+        schema:
+          $ref: "#/definitions/MessageTemplate"
+        x-exportParamName: "MessageTemplate"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/MessageTemplate"
+        201:
+          description: "Created"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+        404:
+          description: "Not Found"
+      security:
+      - apiKey:
+        - "global"
+  /api/message-templates/email/{lifecycleEventName}:
+    get:
+      tags:
+      - "endpoints"
+      summary: "getMessageTemplate"
+      operationId: "getMessageTemplateUsingGET"
+      produces:
+      - "*/*"
+      parameters:
+      - name: "lifecycleEventName"
+        in: "path"
+        description: "lifecycleEventName"
+        required: true
+        type: "string"
+        x-exportParamName: "LifecycleEventName"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/MessageTemplate"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+        404:
+          description: "Not Found"
+      security:
+      - apiKey:
+        - "global"
+  /api/message-templates/{id}:
+    get:
+      tags:
+      - "message-template-resource"
+      summary: "getMessageTemplate"
+      operationId: "getMessageTemplateUsingGET_1"
+      produces:
+      - "*/*"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "id"
+        required: true
+        type: "integer"
+        format: "int64"
+        x-exportParamName: "Id"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/MessageTemplate"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+        404:
+          description: "Not Found"
+      security:
+      - apiKey:
+        - "global"
+    delete:
+      tags:
+      - "message-template-resource"
+      summary: "deleteMessageTemplate"
+      operationId: "deleteMessageTemplateUsingDELETE"
+      produces:
+      - "*/*"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "id"
+        required: true
+        type: "integer"
+        format: "int64"
+        x-exportParamName: "Id"
+      responses:
+        200:
+          description: "OK"
+        204:
+          description: "No Content"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+      security:
+      - apiKey:
+        - "global"
+  /api/offers:
+    get:
+      tags:
+      - "offer-resource"
+      summary: "getAllOffers"
+      operationId: "getAllOffersUsingGET"
+      produces:
+      - "*/*"
+      parameters: []
+      responses:
+        200:
+          description: "OK"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Offer"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+        404:
+          description: "Not Found"
+      security:
+      - apiKey:
+        - "global"
+    post:
+      tags:
+      - "offer-resource"
+      summary: "createOffer"
+      operationId: "createOfferUsingPOST"
+      consumes:
+      - "application/json"
+      produces:
+      - "*/*"
+      parameters:
+      - in: "body"
+        name: "offer"
+        description: "offer"
+        required: true
+        schema:
+          $ref: "#/definitions/Offer"
+        x-exportParamName: "Offer"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/Offer"
+        201:
+          description: "Created"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+        404:
+          description: "Not Found"
+      security:
+      - apiKey:
+        - "global"
+    put:
+      tags:
+      - "offer-resource"
+      summary: "updateOffer"
+      operationId: "updateOfferUsingPUT"
+      consumes:
+      - "application/json"
+      produces:
+      - "*/*"
+      parameters:
+      - in: "body"
+        name: "offer"
+        description: "offer"
+        required: true
+        schema:
+          $ref: "#/definitions/Offer"
+        x-exportParamName: "Offer"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/Offer"
+        201:
+          description: "Created"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+        404:
+          description: "Not Found"
+      security:
+      - apiKey:
+        - "global"
+  /api/offers/{id}:
+    get:
+      tags:
+      - "offer-resource"
+      summary: "getOffer"
+      operationId: "getOfferUsingGET"
+      produces:
+      - "*/*"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "id"
+        required: true
+        type: "integer"
+        format: "int64"
+        x-exportParamName: "Id"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/Offer"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+        404:
+          description: "Not Found"
+      security:
+      - apiKey:
+        - "global"
+    delete:
+      tags:
+      - "offer-resource"
+      summary: "deleteOffer"
+      operationId: "deleteOfferUsingDELETE"
+      produces:
+      - "*/*"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "id"
+        required: true
+        type: "integer"
+        format: "int64"
+        x-exportParamName: "Id"
+      responses:
+        200:
+          description: "OK"
+        204:
+          description: "No Content"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+      security:
+      - apiKey:
+        - "global"
+  /api/profile-info:
+    get:
+      tags:
+      - "profile-info-resource"
+      summary: "getActiveProfiles"
+      operationId: "getActiveProfilesUsingGET"
+      produces:
+      - "*/*"
+      parameters: []
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/ProfileInfoVM"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+        404:
+          description: "Not Found"
+      security:
+      - apiKey:
+        - "global"
+  /api/service-instances:
+    get:
+      tags:
+      - "service-instance-resource"
+      summary: "getAllServiceInstances"
+      operationId: "getAllServiceInstancesUsingGET"
+      produces:
+      - "*/*"
+      parameters: []
+      responses:
+        200:
+          description: "OK"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/ServiceInstance"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+        404:
+          description: "Not Found"
+      security:
+      - apiKey:
+        - "global"
+    post:
+      tags:
+      - "service-instance-resource"
+      summary: "createServiceInstance"
+      operationId: "createServiceInstanceUsingPOST"
+      consumes:
+      - "application/json"
+      produces:
+      - "*/*"
+      parameters:
+      - in: "body"
+        name: "serviceInstance"
+        description: "serviceInstance"
+        required: true
+        schema:
+          $ref: "#/definitions/ServiceInstance"
+        x-exportParamName: "ServiceInstance"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/ServiceInstance"
+        201:
+          description: "Created"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+        404:
+          description: "Not Found"
+      security:
+      - apiKey:
+        - "global"
+    put:
+      tags:
+      - "service-instance-resource"
+      summary: "updateServiceInstance"
+      operationId: "updateServiceInstanceUsingPUT"
+      consumes:
+      - "application/json"
+      produces:
+      - "*/*"
+      parameters:
+      - in: "body"
+        name: "serviceInstance"
+        description: "serviceInstance"
+        required: true
+        schema:
+          $ref: "#/definitions/ServiceInstance"
+        x-exportParamName: "ServiceInstance"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/ServiceInstance"
+        201:
+          description: "Created"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+        404:
+          description: "Not Found"
+      security:
+      - apiKey:
+        - "global"
+  /api/service-instances/subscription/{id}:
+    get:
+      tags:
+      - "endpoints"
+      summary: "getServiceInstancesBySubscription"
+      operationId: "getServiceInstancesBySubscriptionUsingGET"
+      produces:
+      - "*/*"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "id"
+        required: true
+        type: "integer"
+        format: "int64"
+        x-exportParamName: "Id"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/ServiceInstanceResult"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+        404:
+          description: "Not Found"
+      security:
+      - apiKey:
+        - "global"
+  /api/service-instances/{id}:
+    get:
+      tags:
+      - "service-instance-resource"
+      summary: "getServiceInstance"
+      operationId: "getServiceInstanceUsingGET"
+      produces:
+      - "*/*"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "id"
+        required: true
+        type: "integer"
+        format: "int64"
+        x-exportParamName: "Id"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/ServiceInstance"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+        404:
+          description: "Not Found"
+      security:
+      - apiKey:
+        - "global"
+    delete:
+      tags:
+      - "service-instance-resource"
+      summary: "deleteServiceInstance"
+      operationId: "deleteServiceInstanceUsingDELETE"
+      produces:
+      - "*/*"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "id"
+        required: true
+        type: "integer"
+        format: "int64"
+        x-exportParamName: "Id"
+      responses:
+        200:
+          description: "OK"
+        204:
+          description: "No Content"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+      security:
+      - apiKey:
+        - "global"
+  /api/service-offerings:
+    get:
+      tags:
+      - "service-offering-resource"
+      summary: "getAllServiceOfferings"
+      operationId: "getAllServiceOfferingsUsingGET"
+      produces:
+      - "*/*"
+      parameters: []
+      responses:
+        200:
+          description: "OK"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/ServiceOffering"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+        404:
+          description: "Not Found"
+      security:
+      - apiKey:
+        - "global"
+    post:
+      tags:
+      - "service-offering-resource"
+      summary: "createServiceOffering"
+      operationId: "createServiceOfferingUsingPOST"
+      consumes:
+      - "application/json"
+      produces:
+      - "*/*"
+      parameters:
+      - in: "body"
+        name: "serviceOffering"
+        description: "serviceOffering"
+        required: true
+        schema:
+          $ref: "#/definitions/ServiceOffering"
+        x-exportParamName: "ServiceOffering"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/ServiceOffering"
+        201:
+          description: "Created"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+        404:
+          description: "Not Found"
+      security:
+      - apiKey:
+        - "global"
+    put:
+      tags:
+      - "service-offering-resource"
+      summary: "updateServiceOffering"
+      operationId: "updateServiceOfferingUsingPUT"
+      consumes:
+      - "application/json"
+      produces:
+      - "*/*"
+      parameters:
+      - in: "body"
+        name: "serviceOffering"
+        description: "serviceOffering"
+        required: true
+        schema:
+          $ref: "#/definitions/ServiceOffering"
+        x-exportParamName: "ServiceOffering"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/ServiceOffering"
+        201:
+          description: "Created"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+        404:
+          description: "Not Found"
+      security:
+      - apiKey:
+        - "global"
+  /api/service-offerings/offer/{id}:
+    get:
+      tags:
+      - "endpoints"
+      summary: "getServiceOfferingsBySubscriptionPlan"
+      operationId: "getServiceOfferingsBySubscriptionPlanUsingGET"
+      produces:
+      - "*/*"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "id"
+        required: true
+        type: "integer"
+        format: "int64"
+        x-exportParamName: "Id"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/ServiceOfferingResult"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+        404:
+          description: "Not Found"
+      security:
+      - apiKey:
+        - "global"
+  /api/service-offerings/{id}:
+    get:
+      tags:
+      - "service-offering-resource"
+      summary: "getServiceOffering"
+      operationId: "getServiceOfferingUsingGET"
+      produces:
+      - "*/*"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "id"
+        required: true
+        type: "integer"
+        format: "int64"
+        x-exportParamName: "Id"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/ServiceOffering"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+        404:
+          description: "Not Found"
+      security:
+      - apiKey:
+        - "global"
+    delete:
+      tags:
+      - "service-offering-resource"
+      summary: "deleteServiceOffering"
+      operationId: "deleteServiceOfferingUsingDELETE"
+      produces:
+      - "*/*"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "id"
+        required: true
+        type: "integer"
+        format: "int64"
+        x-exportParamName: "Id"
+      responses:
+        200:
+          description: "OK"
+        204:
+          description: "No Content"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+      security:
+      - apiKey:
+        - "global"
+  /api/service/subscriber/{secureId}:
+    get:
+      tags:
+      - "endpoints"
+      summary: "getAuthorizedServices"
+      operationId: "getAuthorizedServicesUsingGET"
+      produces:
+      - "*/*"
+      parameters:
+      - name: "secureId"
+        in: "path"
+        description: "secureId"
+        required: true
+        type: "string"
+        x-exportParamName: "SecureId"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/AuthorizedServicesResponse"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+        404:
+          description: "Not Found"
+      security:
+      - apiKey:
+        - "global"
+  /api/services:
+    get:
+      tags:
+      - "service-resource"
+      summary: "getAllServices"
+      operationId: "getAllServicesUsingGET"
+      produces:
+      - "*/*"
+      parameters: []
+      responses:
+        200:
+          description: "OK"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Service"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+        404:
+          description: "Not Found"
+      security:
+      - apiKey:
+        - "global"
+    post:
+      tags:
+      - "service-resource"
+      summary: "createService"
+      operationId: "createServiceUsingPOST"
+      consumes:
+      - "application/json"
+      produces:
+      - "*/*"
+      parameters:
+      - in: "body"
+        name: "service"
+        description: "service"
+        required: true
+        schema:
+          $ref: "#/definitions/Service"
+        x-exportParamName: "Service"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/Service"
+        201:
+          description: "Created"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+        404:
+          description: "Not Found"
+      security:
+      - apiKey:
+        - "global"
+    put:
+      tags:
+      - "service-resource"
+      summary: "updateService"
+      operationId: "updateServiceUsingPUT"
+      consumes:
+      - "application/json"
+      produces:
+      - "*/*"
+      parameters:
+      - in: "body"
+        name: "service"
+        description: "service"
+        required: true
+        schema:
+          $ref: "#/definitions/Service"
+        x-exportParamName: "Service"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/Service"
+        201:
+          description: "Created"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+        404:
+          description: "Not Found"
+      security:
+      - apiKey:
+        - "global"
+  /api/services/{id}:
+    get:
+      tags:
+      - "service-resource"
+      summary: "getService"
+      operationId: "getServiceUsingGET"
+      produces:
+      - "*/*"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "id"
+        required: true
+        type: "integer"
+        format: "int64"
+        x-exportParamName: "Id"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/Service"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+        404:
+          description: "Not Found"
+      security:
+      - apiKey:
+        - "global"
+    delete:
+      tags:
+      - "service-resource"
+      summary: "deleteService"
+      operationId: "deleteServiceUsingDELETE"
+      produces:
+      - "*/*"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "id"
+        required: true
+        type: "integer"
+        format: "int64"
+        x-exportParamName: "Id"
+      responses:
+        200:
+          description: "OK"
+        204:
+          description: "No Content"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+      security:
+      - apiKey:
+        - "global"
+  /api/subscribers:
+    get:
+      tags:
+      - "subscriber-resource"
+      summary: "getAllSubscribers"
+      operationId: "getAllSubscribersUsingGET"
+      produces:
+      - "*/*"
+      parameters: []
+      responses:
+        200:
+          description: "OK"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Subscriber"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+        404:
+          description: "Not Found"
+      security:
+      - apiKey:
+        - "global"
+    post:
+      tags:
+      - "subscriber-resource"
+      summary: "createSubscriber"
+      operationId: "createSubscriberUsingPOST"
+      consumes:
+      - "application/json"
+      produces:
+      - "*/*"
+      parameters:
+      - in: "body"
+        name: "subscriber"
+        description: "subscriber"
+        required: true
+        schema:
+          $ref: "#/definitions/Subscriber"
+        x-exportParamName: "Subscriber"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/Subscriber"
+        201:
+          description: "Created"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+        404:
+          description: "Not Found"
+      security:
+      - apiKey:
+        - "global"
+    put:
+      tags:
+      - "subscriber-resource"
+      summary: "updateSubscriber"
+      operationId: "updateSubscriberUsingPUT"
+      consumes:
+      - "application/json"
+      produces:
+      - "*/*"
+      parameters:
+      - in: "body"
+        name: "subscriber"
+        description: "subscriber"
+        required: true
+        schema:
+          $ref: "#/definitions/Subscriber"
+        x-exportParamName: "Subscriber"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/Subscriber"
+        201:
+          description: "Created"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+        404:
+          description: "Not Found"
+      security:
+      - apiKey:
+        - "global"
+  /api/subscribers/email/{email}:
+    get:
+      tags:
+      - "subscriber-resource"
+      summary: "getSubscriberByEmail"
+      operationId: "getSubscriberByEmailUsingGET"
+      produces:
+      - "*/*"
+      parameters:
+      - name: "email"
+        in: "path"
+        description: "email"
+        required: true
+        type: "string"
+        x-exportParamName: "Email"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Subscriber"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+        404:
+          description: "Not Found"
+      security:
+      - apiKey:
+        - "global"
+  /api/subscribers/name/{name}:
+    get:
+      tags:
+      - "subscriber-resource"
+      summary: "getSubscriberByName"
+      operationId: "getSubscriberByNameUsingGET"
+      produces:
+      - "*/*"
+      parameters:
+      - name: "name"
+        in: "path"
+        description: "name"
+        required: true
+        type: "string"
+        x-exportParamName: "Name"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Subscriber"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+        404:
+          description: "Not Found"
+      security:
+      - apiKey:
+        - "global"
+  /api/subscribers/{id}:
+    get:
+      tags:
+      - "subscriber-resource"
+      summary: "getSubscriber"
+      operationId: "getSubscriberUsingGET"
+      produces:
+      - "*/*"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "id"
+        required: true
+        type: "integer"
+        format: "int64"
+        x-exportParamName: "Id"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/Subscriber"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+        404:
+          description: "Not Found"
+      security:
+      - apiKey:
+        - "global"
+    delete:
+      tags:
+      - "subscriber-resource"
+      summary: "deleteSubscriber"
+      operationId: "deleteSubscriberUsingDELETE"
+      produces:
+      - "*/*"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "id"
+        required: true
+        type: "integer"
+        format: "int64"
+        x-exportParamName: "Id"
+      responses:
+        200:
+          description: "OK"
+        204:
+          description: "No Content"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+      security:
+      - apiKey:
+        - "global"
+  /api/subscriptions/cancel:
+    put:
+      tags:
+      - "subsription-resource"
+      summary: "cancelSubscription"
+      operationId: "cancelSubscriptionUsingPUT"
+      consumes:
+      - "application/json"
+      produces:
+      - "*/*"
+      parameters:
+      - in: "body"
+        name: "cancellation"
+        description: "cancellation"
+        required: true
+        schema:
+          $ref: "#/definitions/Cancellation"
+        x-exportParamName: "Cancellation"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/Subsription"
+        201:
+          description: "Created"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+        404:
+          description: "Not Found"
+      security:
+      - apiKey:
+        - "global"
+  /api/subscriptions/company/{id}:
+    get:
+      tags:
+      - "subsription-resource"
+      summary: "getAllCompanySubscriptions"
+      operationId: "getAllCompanySubscriptionsUsingGET"
+      produces:
+      - "*/*"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "id"
+        required: true
+        type: "string"
+        x-exportParamName: "Id"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Subsription"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+        404:
+          description: "Not Found"
+      security:
+      - apiKey:
+        - "global"
+  /api/subscriptions/start:
+    post:
+      tags:
+      - "subsription-resource"
+      summary: "startSubscription"
+      operationId: "startSubscriptionUsingPOST"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "request"
+        description: "request"
+        required: true
+        schema:
+          $ref: "#/definitions/StartSubscriptionRequest"
+        x-exportParamName: "Request"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/SubscriptionCreateResult"
+        201:
+          description: "Created"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+        404:
+          description: "Not Found"
+      security:
+      - apiKey:
+        - "global"
+  /api/subsriptions/subscriber/{secureId}:
+    get:
+      tags:
+      - "subsription-resource"
+      summary: "getActiveSubscriptions"
+      operationId: "getActiveSubscriptionsUsingGET"
+      produces:
+      - "*/*"
+      parameters:
+      - name: "secureId"
+        in: "path"
+        description: "secureId"
+        required: true
+        type: "string"
+        x-exportParamName: "SecureId"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Subsription"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+        404:
+          description: "Not Found"
+      security:
+      - apiKey:
+        - "global"
+  /api/subsriptions/{id}:
+    get:
+      tags:
+      - "subsription-resource"
+      summary: "getSubsription"
+      operationId: "getSubsriptionUsingGET"
+      produces:
+      - "*/*"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "id"
+        required: true
+        type: "integer"
+        format: "int64"
+        x-exportParamName: "Id"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/Subsription"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+        404:
+          description: "Not Found"
+      security:
+      - apiKey:
+        - "global"
+  /api/usage-notifications:
+    get:
+      tags:
+      - "usage-notification-resource"
+      summary: "getAllUsageNotifications"
+      operationId: "getAllUsageNotificationsUsingGET"
+      produces:
+      - "*/*"
+      parameters: []
+      responses:
+        200:
+          description: "OK"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/UsageNotification"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+        404:
+          description: "Not Found"
+      security:
+      - apiKey:
+        - "global"
+    post:
+      tags:
+      - "usage-notification-resource"
+      summary: "createUsageNotification"
+      operationId: "createUsageNotificationUsingPOST"
+      consumes:
+      - "application/json"
+      produces:
+      - "*/*"
+      parameters:
+      - in: "body"
+        name: "usageNotification"
+        description: "usageNotification"
+        required: true
+        schema:
+          $ref: "#/definitions/UsageNotification"
+        x-exportParamName: "UsageNotification"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/UsageNotification"
+        201:
+          description: "Created"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+        404:
+          description: "Not Found"
+      security:
+      - apiKey:
+        - "global"
+    put:
+      tags:
+      - "usage-notification-resource"
+      summary: "updateUsageNotification"
+      operationId: "updateUsageNotificationUsingPUT"
+      consumes:
+      - "application/json"
+      produces:
+      - "*/*"
+      parameters:
+      - in: "body"
+        name: "usageNotification"
+        description: "usageNotification"
+        required: true
+        schema:
+          $ref: "#/definitions/UsageNotification"
+        x-exportParamName: "UsageNotification"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/UsageNotification"
+        201:
+          description: "Created"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+        404:
+          description: "Not Found"
+      security:
+      - apiKey:
+        - "global"
+  /api/usage-notifications/{id}:
+    get:
+      tags:
+      - "usage-notification-resource"
+      summary: "getUsageNotification"
+      operationId: "getUsageNotificationUsingGET"
+      produces:
+      - "*/*"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "id"
+        required: true
+        type: "integer"
+        format: "int64"
+        x-exportParamName: "Id"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/UsageNotification"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+        404:
+          description: "Not Found"
+      security:
+      - apiKey:
+        - "global"
+    delete:
+      tags:
+      - "usage-notification-resource"
+      summary: "deleteUsageNotification"
+      operationId: "deleteUsageNotificationUsingDELETE"
+      produces:
+      - "*/*"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "id"
+        required: true
+        type: "integer"
+        format: "int64"
+        x-exportParamName: "Id"
+      responses:
+        200:
+          description: "OK"
+        204:
+          description: "No Content"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+      security:
+      - apiKey:
+        - "global"
+  /api/users:
+    get:
+      tags:
+      - "user-resource"
+      summary: "getAllUsers"
+      operationId: "getAllUsersUsingGET"
+      produces:
+      - "*/*"
+      parameters:
+      - name: "page"
+        in: "query"
+        description: "Page number of the requested page"
+        required: false
+        type: "integer"
+        format: "int32"
+        x-exportParamName: "Page"
+      - name: "size"
+        in: "query"
+        description: "Size of a page"
+        required: false
+        type: "integer"
+        format: "int32"
+        x-exportParamName: "Size"
+      - name: "sort"
+        in: "query"
+        description: "Sorting criteria in the format: property(,asc|desc). Default\
+          \ sort order is ascending. Multiple sort criteria are supported."
+        required: false
+        type: "array"
+        items:
+          type: "string"
+        collectionFormat: "multi"
+        x-exportParamName: "Sort"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/User"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+        404:
+          description: "Not Found"
+      security:
+      - apiKey:
+        - "global"
+    post:
+      tags:
+      - "user-resource"
+      summary: "createUser"
+      operationId: "createUserUsingPOST"
+      consumes:
+      - "application/json"
+      produces:
+      - "*/*"
+      parameters:
+      - in: "body"
+        name: "managedUserVM"
+        description: "managedUserVM"
+        required: true
+        schema:
+          $ref: "#/definitions/ManagedUserVM"
+        x-exportParamName: "ManagedUserVM"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/ResponseEntity"
+        201:
+          description: "Created"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+        404:
+          description: "Not Found"
+      security:
+      - apiKey:
+        - "global"
+    put:
+      tags:
+      - "user-resource"
+      summary: "updateUser"
+      operationId: "updateUserUsingPUT"
+      consumes:
+      - "application/json"
+      produces:
+      - "*/*"
+      parameters:
+      - in: "body"
+        name: "managedUserVM"
+        description: "managedUserVM"
+        required: true
+        schema:
+          $ref: "#/definitions/ManagedUserVM"
+        x-exportParamName: "ManagedUserVM"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/User"
+        201:
+          description: "Created"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+        404:
+          description: "Not Found"
+      security:
+      - apiKey:
+        - "global"
+  /api/users/authorities:
+    get:
+      tags:
+      - "user-resource"
+      summary: "getAuthorities"
+      operationId: "getAuthoritiesUsingGET"
+      produces:
+      - "*/*"
+      parameters: []
+      responses:
+        200:
+          description: "OK"
+          schema:
+            type: "array"
+            items:
+              type: "string"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+        404:
+          description: "Not Found"
+      security:
+      - apiKey:
+        - "global"
+  /api/users/{login}:
+    get:
+      tags:
+      - "user-resource"
+      summary: "getUser"
+      operationId: "getUserUsingGET"
+      produces:
+      - "*/*"
+      parameters:
+      - name: "login"
+        in: "path"
+        description: "login"
+        required: true
+        type: "string"
+        x-exportParamName: "Login"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/User"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+        404:
+          description: "Not Found"
+      security:
+      - apiKey:
+        - "global"
+    delete:
+      tags:
+      - "user-resource"
+      summary: "deleteUser"
+      operationId: "deleteUserUsingDELETE"
+      produces:
+      - "*/*"
+      parameters:
+      - name: "login"
+        in: "path"
+        description: "login"
+        required: true
+        type: "string"
+        x-exportParamName: "Login"
+      responses:
+        200:
+          description: "OK"
+        204:
+          description: "No Content"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+      security:
+      - apiKey:
+        - "global"
+securityDefinitions:
+  apiKey:
+    type: "apiKey"
+    name: "Authorization"
+    in: "header"
+definitions:
+  Address:
+    type: "object"
+    properties:
+      city:
+        type: "string"
+      country:
+        type: "string"
+      id:
+        type: "integer"
+        format: "int64"
+      name:
+        type: "string"
+      postalCode:
+        type: "string"
+      stateProvince:
+        type: "string"
+      streetAddress:
+        type: "string"
+    title: "Address"
+    example:
+      country: "country"
+      city: "city"
+      streetAddress: "streetAddress"
+      postalCode: "postalCode"
+      name: "name"
+      stateProvince: "stateProvince"
+      id: 0
+  Authority:
+    type: "object"
+    required:
+    - "name"
+    properties:
+      name:
+        type: "string"
+        minLength: 0
+        maxLength: 50
+    title: "Authority"
+  Authorization:
+    type: "object"
+    properties:
+      serviceId:
+        type: "integer"
+        format: "int64"
+      serviceUserId:
+        type: "string"
+    title: "Authorization"
+    example:
+      serviceUserId: "serviceUserId"
+      serviceId: 0
+  AuthorizedServicesResponse:
+    type: "object"
+    properties:
+      services:
+        type: "array"
+        items:
+          $ref: "#/definitions/ServiceInstance"
+    title: "AuthorizedServicesResponse"
+  Cancellation:
+    type: "object"
+    properties:
+      cancellationType:
+        type: "string"
+        enum:
+        - "IMMEDIATE"
+        - "ENDOFTHEPERIOD"
+      subscriptionId:
+        type: "integer"
+        format: "int64"
+    title: "Cancellation"
+    example:
+      cancellationType: "IMMEDIATE"
+      subscriptionId: 0
+  ChargingLog:
+    type: "object"
+    properties:
+      appliedCoupon:
+        type: "integer"
+        format: "int64"
+      authCode:
+        type: "string"
+      companyId:
+        type: "integer"
+        format: "int64"
+      createDate:
+        type: "string"
+        format: "date-time"
+      currency:
+        type: "string"
+      errorCode:
+        type: "string"
+      errorText:
+        type: "string"
+      id:
+        type: "integer"
+        format: "int64"
+      invoiceId:
+        type: "integer"
+        format: "int64"
+      jobId:
+        type: "integer"
+        format: "int64"
+      parent:
+        $ref: "#/definitions/ChargingLog"
+      paymentGateway:
+        type: "string"
+        enum:
+        - "OFFLINE"
+        - "IYZICO"
+        - "PAYU"
+      paymentId:
+        type: "string"
+      price:
+        type: "number"
+      reason:
+        type: "string"
+        enum:
+        - "START"
+        - "RENEWAL"
+        - "OVER_USAGE"
+        - "REFUND"
+      serviceInstanceId:
+        type: "integer"
+        format: "int64"
+      status:
+        type: "string"
+        enum:
+        - "NOT_PAID"
+        - "SUCCESS"
+        - "FAIL"
+        - "REFUNDED"
+      subscriberSecureId:
+        type: "string"
+      subscriptionId:
+        type: "integer"
+        format: "int64"
+      transactionId:
+        type: "string"
+    title: "ChargingLog"
+    example:
+      parent: null
+      reason: "START"
+      authCode: "authCode"
+      subscriberSecureId: "subscriberSecureId"
+      appliedCoupon: 0
+      errorCode: "errorCode"
+      serviceInstanceId: 7
+      transactionId: "transactionId"
+      errorText: "errorText"
+      jobId: 5
+      companyId: 6
+      paymentId: "paymentId"
+      price: 2.3021358869347654518833223846741020679473876953125
+      currency: "currency"
+      invoiceId: 5
+      id: 1
+      subscriptionId: 9
+      createDate: "2000-01-23T04:56:07.000+00:00"
+      paymentGateway: "OFFLINE"
+      status: "NOT_PAID"
+  Company:
+    type: "object"
+    required:
+    - "name"
+    properties:
+      address:
+        $ref: "#/definitions/Address"
+      id:
+        type: "integer"
+        format: "int64"
+      name:
+        type: "string"
+    title: "Company"
+    example:
+      address:
+        country: "country"
+        city: "city"
+        streetAddress: "streetAddress"
+        postalCode: "postalCode"
+        name: "name"
+        stateProvince: "stateProvince"
+        id: 0
+      name: "name"
+      id: 6
+  CompanyProps:
+    type: "object"
+    properties:
+      apiKey:
+        type: "string"
+      callbackUrl:
+        type: "string"
+      company:
+        $ref: "#/definitions/Company"
+      id:
+        type: "integer"
+        format: "int64"
+      paymentGatewayApiKey:
+        type: "string"
+      paymentGatewaySecurityKey:
+        type: "string"
+      paymentMethod:
+        type: "string"
+        enum:
+        - "OFFLINE"
+        - "IYZICO"
+        - "PAYU"
+      secureKey:
+        type: "string"
+    title: "CompanyProps"
+    example:
+      paymentGatewaySecurityKey: "paymentGatewaySecurityKey"
+      paymentGatewayApiKey: "paymentGatewayApiKey"
+      secureKey: "secureKey"
+      apiKey: "apiKey"
+      paymentMethod: "OFFLINE"
+      callbackUrl: "callbackUrl"
+      company:
+        address:
+          country: "country"
+          city: "city"
+          streetAddress: "streetAddress"
+          postalCode: "postalCode"
+          name: "name"
+          stateProvince: "stateProvince"
+          id: 0
+        name: "name"
+        id: 6
+      id: 0
+  Coupon:
+    type: "object"
+    required:
+    - "discountAmount"
+    - "discountType"
+    - "maxLimit"
+    properties:
+      code:
+        type: "string"
+      company:
+        $ref: "#/definitions/Company"
+      currentUsage:
+        type: "integer"
+        format: "int32"
+      discountAmount:
+        type: "number"
+      discountType:
+        type: "string"
+        enum:
+        - "FIXED"
+        - "PERCENTAGE"
+      expireDate:
+        type: "string"
+        format: "date-time"
+      id:
+        type: "integer"
+        format: "int64"
+      maxLimit:
+        type: "integer"
+        format: "int32"
+    title: "Coupon"
+    example:
+      code: "code"
+      maxLimit: 5
+      currentUsage: 0
+      discountAmount: 6.02745618307040320615897144307382404804229736328125
+      company:
+        address:
+          country: "country"
+          city: "city"
+          streetAddress: "streetAddress"
+          postalCode: "postalCode"
+          name: "name"
+          stateProvince: "stateProvince"
+          id: 0
+        name: "name"
+        id: 6
+      discountType: "FIXED"
+      expireDate: "2000-01-23T04:56:07.000+00:00"
+      id: 1
+  Deduction:
+    type: "object"
+    properties:
+      amount:
+        type: "integer"
+        format: "int64"
+      id:
+        type: "integer"
+        format: "int64"
+      serviceId:
+        type: "integer"
+        format: "int64"
+      usageEndTime:
+        type: "string"
+        format: "date-time"
+      usageStartTime:
+        type: "string"
+        format: "date-time"
+      userId:
+        type: "string"
+    title: "Deduction"
+    example:
+      amount: 0
+      usageStartTime: "2000-01-23T04:56:07.000+00:00"
+      id: 6
+      usageEndTime: "2000-01-23T04:56:07.000+00:00"
+      serviceId: 1
+      userId: "userId"
+  DeductionResult:
+    type: "object"
+    properties:
+      capacity:
+        type: "number"
+      consumedResourceId:
+        type: "integer"
+        format: "int64"
+      overUsage:
+        type: "number"
+      requestedAmount:
+        type: "integer"
+        format: "int64"
+      subscriptionId:
+        type: "integer"
+        format: "int64"
+      usage:
+        type: "number"
+    title: "DeductionResult"
+    example:
+      overUsage: 1.46581298050294517310021547018550336360931396484375
+      usage: 2.3021358869347654518833223846741020679473876953125
+      requestedAmount: 5
+      subscriptionId: 5
+      consumedResourceId: 6
+      capacity: 0.80082819046101150206595775671303272247314453125
+  History:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      name:
+        type: "string"
+        enum:
+        - "STARTED"
+        - "RENEWED"
+        - "FINISHED"
+        - "CANCELLED"
+      subscription:
+        $ref: "#/definitions/Subsription"
+    title: "History"
+    example:
+      name: "STARTED"
+      id: 0
+      subscription:
+        cancelDate: "2000-01-23T04:56:07.000+00:00"
+        nextChargingDate: "2000-01-23T04:56:07.000+00:00"
+        appliedCoupon:
+          code: "code"
+          maxLimit: 5
+          currentUsage: 0
+          discountAmount: 6.02745618307040320615897144307382404804229736328125
+          company:
+            address:
+              country: "country"
+              city: "city"
+              streetAddress: "streetAddress"
+              postalCode: "postalCode"
+              name: "name"
+              stateProvince: "stateProvince"
+              id: 0
+            name: "name"
+            id: 6
+          discountType: "FIXED"
+          expireDate: "2000-01-23T04:56:07.000+00:00"
+          id: 1
+        endDate: "2000-01-23T04:56:07.000+00:00"
+        subscriberId: "subscriberId"
+        services:
+        - serviceType: "ONOFF"
+          endDate: "2000-01-23T04:56:07.000+00:00"
+          quotaOrigin: "SUBS"
+          currentUsage: 2.027123023002321833274663731572218239307403564453125
+          subscriberId: "subscriberId"
+          subscription: null
+          type: "ONOFF"
+          version: 9
+          capacity: 3.61607674925191080461672754609026014804840087890625
+          offer:
+            recurrence:
+              length: 2
+              id: 5
+              recurrenceType: "SECONDLY"
+            secureId: "secureId"
+            trialPeriod: 9
+            price: 5.962133916683182377482808078639209270477294921875
+            name: "name"
+            company:
+              address:
+                country: "country"
+                city: "city"
+                streetAddress: "streetAddress"
+                postalCode: "postalCode"
+                name: "name"
+                stateProvince: "stateProvince"
+                id: 0
+              name: "name"
+              id: 6
+            openEnded: true
+            recurrenceCount: 7
+            id: 1
+          serviceOffering:
+            offer:
+              recurrence:
+                length: 2
+                id: 5
+                recurrenceType: "SECONDLY"
+              secureId: "secureId"
+              trialPeriod: 9
+              price: 5.962133916683182377482808078639209270477294921875
+              name: "name"
+              company:
+                address:
+                  country: "country"
+                  city: "city"
+                  streetAddress: "streetAddress"
+                  postalCode: "postalCode"
+                  name: "name"
+                  stateProvince: "stateProvince"
+                  id: 0
+                name: "name"
+                id: 6
+              openEnded: true
+              recurrenceCount: 7
+              id: 1
+            quotaAmount: 4.9652184929849543237878606305457651615142822265625
+            unitName: "unitName"
+            price: 1.173074250955943309548956676735542714595794677734375
+            service:
+              name: "name"
+              company:
+                address:
+                  country: "country"
+                  city: "city"
+                  streetAddress: "streetAddress"
+                  postalCode: "postalCode"
+                  name: "name"
+                  stateProvince: "stateProvince"
+                  id: 0
+                name: "name"
+                id: 6
+              id: 5
+              type: "ONOFF"
+            description: "description"
+            company:
+              address:
+                country: "country"
+                city: "city"
+                streetAddress: "streetAddress"
+                postalCode: "postalCode"
+                name: "name"
+                stateProvince: "stateProvince"
+                id: 0
+              name: "name"
+              id: 6
+            id: 1
+            overUsagePrice: 6.8468526983526398765889098285697400569915771484375
+            overUsageQuota: 7.4577447736837658709418974467553198337554931640625
+          numberOfUnits: 7
+          overUsage: 1.231513536777255612975068288506008684635162353515625
+          name: "name"
+          id: 4
+          overUsageQuota: 1.024645700144157789424070870154537260532379150390625
+          startDate: "2000-01-23T04:56:07.000+00:00"
+          status: "NEW"
+        - serviceType: "ONOFF"
+          endDate: "2000-01-23T04:56:07.000+00:00"
+          quotaOrigin: "SUBS"
+          currentUsage: 2.027123023002321833274663731572218239307403564453125
+          subscriberId: "subscriberId"
+          subscription: null
+          type: "ONOFF"
+          version: 9
+          capacity: 3.61607674925191080461672754609026014804840087890625
+          offer:
+            recurrence:
+              length: 2
+              id: 5
+              recurrenceType: "SECONDLY"
+            secureId: "secureId"
+            trialPeriod: 9
+            price: 5.962133916683182377482808078639209270477294921875
+            name: "name"
+            company:
+              address:
+                country: "country"
+                city: "city"
+                streetAddress: "streetAddress"
+                postalCode: "postalCode"
+                name: "name"
+                stateProvince: "stateProvince"
+                id: 0
+              name: "name"
+              id: 6
+            openEnded: true
+            recurrenceCount: 7
+            id: 1
+          serviceOffering:
+            offer:
+              recurrence:
+                length: 2
+                id: 5
+                recurrenceType: "SECONDLY"
+              secureId: "secureId"
+              trialPeriod: 9
+              price: 5.962133916683182377482808078639209270477294921875
+              name: "name"
+              company:
+                address:
+                  country: "country"
+                  city: "city"
+                  streetAddress: "streetAddress"
+                  postalCode: "postalCode"
+                  name: "name"
+                  stateProvince: "stateProvince"
+                  id: 0
+                name: "name"
+                id: 6
+              openEnded: true
+              recurrenceCount: 7
+              id: 1
+            quotaAmount: 4.9652184929849543237878606305457651615142822265625
+            unitName: "unitName"
+            price: 1.173074250955943309548956676735542714595794677734375
+            service:
+              name: "name"
+              company:
+                address:
+                  country: "country"
+                  city: "city"
+                  streetAddress: "streetAddress"
+                  postalCode: "postalCode"
+                  name: "name"
+                  stateProvince: "stateProvince"
+                  id: 0
+                name: "name"
+                id: 6
+              id: 5
+              type: "ONOFF"
+            description: "description"
+            company:
+              address:
+                country: "country"
+                city: "city"
+                streetAddress: "streetAddress"
+                postalCode: "postalCode"
+                name: "name"
+                stateProvince: "stateProvince"
+                id: 0
+              name: "name"
+              id: 6
+            id: 1
+            overUsagePrice: 6.8468526983526398765889098285697400569915771484375
+            overUsageQuota: 7.4577447736837658709418974467553198337554931640625
+          numberOfUnits: 7
+          overUsage: 1.231513536777255612975068288506008684635162353515625
+          name: "name"
+          id: 4
+          overUsageQuota: 1.024645700144157789424070870154537260532379150390625
+          startDate: "2000-01-23T04:56:07.000+00:00"
+          status: "NEW"
+        version: 9
+        offer:
+          recurrence:
+            length: 2
+            id: 5
+            recurrenceType: "SECONDLY"
+          secureId: "secureId"
+          trialPeriod: 9
+          price: 5.962133916683182377482808078639209270477294921875
+          name: "name"
+          company:
+            address:
+              country: "country"
+              city: "city"
+              streetAddress: "streetAddress"
+              postalCode: "postalCode"
+              name: "name"
+              stateProvince: "stateProvince"
+              id: 0
+            name: "name"
+            id: 6
+          openEnded: true
+          recurrenceCount: 7
+          id: 1
+        company:
+          address:
+            country: "country"
+            city: "city"
+            streetAddress: "streetAddress"
+            postalCode: "postalCode"
+            name: "name"
+            stateProvince: "stateProvince"
+            id: 0
+          name: "name"
+          id: 6
+        id: 6
+        card:
+          cardAssociation: "cardAssociation"
+          cardFamily: "cardFamily"
+          cardUserKey: "cardUserKey"
+          cardBankCode: 0
+          cardBankName: "cardBankName"
+          binNumber: "binNumber"
+          cartType: "cartType"
+          cardAlias: "cardAlias"
+          id: 6
+          cardToken: "cardToken"
+        startDate: "2000-01-23T04:56:07.000+00:00"
+        status: "NEW"
+  Invoice:
+    type: "object"
+    properties:
+      amount:
+        type: "number"
+      billingMonth:
+        type: "integer"
+        format: "int32"
+      billingYear:
+        type: "integer"
+        format: "int32"
+      id:
+        type: "integer"
+        format: "int64"
+      periodEnd:
+        type: "string"
+        format: "date-time"
+      periodStart:
+        type: "string"
+        format: "date-time"
+      status:
+        type: "string"
+      subscriberSecureId:
+        type: "string"
+    title: "Invoice"
+    example:
+      amount: 0.80082819046101150206595775671303272247314453125
+      billingMonth: 6
+      subscriberSecureId: "subscriberSecureId"
+      billingYear: 1
+      id: 5
+      periodStart: "2000-01-23T04:56:07.000+00:00"
+      periodEnd: "2000-01-23T04:56:07.000+00:00"
+      status: "status"
+  InvoiceRequest:
+    type: "object"
+    properties:
+      customerId:
+        type: "integer"
+        format: "int64"
+      selectedDate:
+        type: "string"
+        format: "date-time"
+      serviceUserId:
+        type: "integer"
+        format: "int64"
+    title: "InvoiceRequest"
+    example:
+      serviceUserId: 6
+      customerId: 0
+      selectedDate: "2000-01-23T04:56:07.000+00:00"
+  ManagedUserVM:
+    type: "object"
+    required:
+    - "login"
+    properties:
+      activated:
+        type: "boolean"
+      authorities:
+        type: "array"
+        items:
+          type: "string"
+      company:
+        $ref: "#/definitions/Company"
+      createdBy:
+        type: "string"
+      createdDate:
+        type: "string"
+        format: "date-time"
+      email:
+        type: "string"
+        minLength: 5
+        maxLength: 100
+      firstName:
+        type: "string"
+        minLength: 0
+        maxLength: 50
+      id:
+        type: "integer"
+        format: "int64"
+      imageUrl:
+        type: "string"
+        minLength: 0
+        maxLength: 256
+      langKey:
+        type: "string"
+        minLength: 2
+        maxLength: 5
+      lastModifiedBy:
+        type: "string"
+      lastModifiedDate:
+        type: "string"
+        format: "date-time"
+      lastName:
+        type: "string"
+        minLength: 0
+        maxLength: 50
+      login:
+        type: "string"
+        minLength: 1
+        maxLength: 50
+        pattern: "^[_'.@A-Za-z0-9-]*$"
+      password:
+        type: "string"
+        minLength: 4
+        maxLength: 100
+      resetDate:
+        type: "string"
+    title: "ManagedUserVM"
+  MessageTemplate:
+    type: "object"
+    required:
+    - "company"
+    properties:
+      company:
+        $ref: "#/definitions/Company"
+      enabled:
+        type: "boolean"
+      eventType:
+        type: "string"
+        enum:
+        - "STARTED"
+        - "RENEWED"
+        - "FINISHED"
+        - "CANCELLED"
+      id:
+        type: "integer"
+        format: "int64"
+      messageTemplate:
+        type: "string"
+      notificationType:
+        type: "string"
+        enum:
+        - "WEBHOOK"
+        - "EMAIL"
+      sender:
+        type: "string"
+      subject:
+        type: "string"
+    title: "MessageTemplate"
+    example:
+      sender: "sender"
+      subject: "subject"
+      company:
+        address:
+          country: "country"
+          city: "city"
+          streetAddress: "streetAddress"
+          postalCode: "postalCode"
+          name: "name"
+          stateProvince: "stateProvince"
+          id: 0
+        name: "name"
+        id: 6
+      eventType: "STARTED"
+      id: 0
+      notificationType: "WEBHOOK"
+      enabled: true
+      messageTemplate: "messageTemplate"
+  Offer:
+    type: "object"
+    required:
+    - "company"
+    - "name"
+    - "openEnded"
+    - "price"
+    - "recurrence"
+    properties:
+      company:
+        $ref: "#/definitions/Company"
+      id:
+        type: "integer"
+        format: "int64"
+      name:
+        type: "string"
+      openEnded:
+        type: "boolean"
+      price:
+        type: "number"
+      recurrence:
+        $ref: "#/definitions/RecurrencePeriod"
+      recurrenceCount:
+        type: "integer"
+        format: "int32"
+      secureId:
+        type: "string"
+      trialPeriod:
+        type: "integer"
+        format: "int32"
+    title: "Offer"
+    example:
+      recurrence:
+        length: 2
+        id: 5
+        recurrenceType: "SECONDLY"
+      secureId: "secureId"
+      trialPeriod: 9
+      price: 5.962133916683182377482808078639209270477294921875
+      name: "name"
+      company:
+        address:
+          country: "country"
+          city: "city"
+          streetAddress: "streetAddress"
+          postalCode: "postalCode"
+          name: "name"
+          stateProvince: "stateProvince"
+          id: 0
+        name: "name"
+        id: 6
+      openEnded: true
+      recurrenceCount: 7
+      id: 1
+  PaymentCard:
+    type: "object"
+    properties:
+      cardAlias:
+        type: "string"
+      cardExpiry:
+        type: "string"
+      cardHolderName:
+        type: "string"
+      cardNumber:
+        type: "string"
+      cardToken:
+        type: "string"
+      cardUserKey:
+        type: "string"
+      cvc:
+        type: "string"
+      expireMonth:
+        type: "string"
+      expireYear:
+        type: "string"
+      registerCard:
+        type: "integer"
+        format: "int32"
+    title: "PaymentCard"
+    example:
+      cvc: "cvc"
+      cardUserKey: "cardUserKey"
+      cardExpiry: "cardExpiry"
+      cardHolderName: "cardHolderName"
+      expireMonth: "expireMonth"
+      cardAlias: "cardAlias"
+      expireYear: "expireYear"
+      registerCard: 6
+      cardNumber: "cardNumber"
+      cardToken: "cardToken"
+  ProfileInfoVM:
+    type: "object"
+    properties:
+      activeProfiles:
+        type: "array"
+        items:
+          type: "string"
+      ribbonEnv:
+        type: "string"
+    title: "ProfileInfoVM"
+  RecurrencePeriod:
+    type: "object"
+    required:
+    - "length"
+    - "recurrenceType"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      length:
+        type: "integer"
+        format: "int64"
+      recurrenceType:
+        type: "string"
+        enum:
+        - "SECONDLY"
+        - "MINUTELY"
+        - "HOURLY"
+        - "DAILY"
+        - "WEEKLY"
+        - "MONTHLY"
+        - "YEARLY"
+    title: "RecurrencePeriod"
+    example:
+      length: 2
+      id: 5
+      recurrenceType: "SECONDLY"
+  ResponseEntity:
+    type: "object"
+    properties:
+      body:
+        type: "object"
+        properties: {}
+      statusCode:
+        type: "string"
+        enum:
+        - "100"
+        - "101"
+        - "102"
+        - "103"
+        - "200"
+        - "201"
+        - "202"
+        - "203"
+        - "204"
+        - "205"
+        - "206"
+        - "207"
+        - "208"
+        - "226"
+        - "300"
+        - "301"
+        - "302"
+        - "303"
+        - "304"
+        - "305"
+        - "307"
+        - "308"
+        - "400"
+        - "401"
+        - "402"
+        - "403"
+        - "404"
+        - "405"
+        - "406"
+        - "407"
+        - "408"
+        - "409"
+        - "410"
+        - "411"
+        - "412"
+        - "413"
+        - "414"
+        - "415"
+        - "416"
+        - "417"
+        - "418"
+        - "419"
+        - "420"
+        - "421"
+        - "422"
+        - "423"
+        - "424"
+        - "426"
+        - "428"
+        - "429"
+        - "431"
+        - "451"
+        - "500"
+        - "501"
+        - "502"
+        - "503"
+        - "504"
+        - "505"
+        - "506"
+        - "507"
+        - "508"
+        - "509"
+        - "510"
+        - "511"
+      statusCodeValue:
+        type: "integer"
+        format: "int32"
+    title: "ResponseEntity"
+  SavedCard:
+    type: "object"
+    properties:
+      binNumber:
+        type: "string"
+      cardAlias:
+        type: "string"
+      cardAssociation:
+        type: "string"
+      cardBankCode:
+        type: "integer"
+        format: "int64"
+      cardBankName:
+        type: "string"
+      cardFamily:
+        type: "string"
+      cardToken:
+        type: "string"
+      cardUserKey:
+        type: "string"
+      cartType:
+        type: "string"
+      id:
+        type: "integer"
+        format: "int64"
+    title: "SavedCard"
+    example:
+      cardAssociation: "cardAssociation"
+      cardFamily: "cardFamily"
+      cardUserKey: "cardUserKey"
+      cardBankCode: 0
+      cardBankName: "cardBankName"
+      binNumber: "binNumber"
+      cartType: "cartType"
+      cardAlias: "cardAlias"
+      id: 6
+      cardToken: "cardToken"
+  Service:
+    type: "object"
+    required:
+    - "company"
+    - "name"
+    - "type"
+    properties:
+      company:
+        $ref: "#/definitions/Company"
+      id:
+        type: "integer"
+        format: "int64"
+      name:
+        type: "string"
+      type:
+        type: "string"
+        enum:
+        - "ONOFF"
+        - "SEAT_BASED"
+        - "USAGE_BASED"
+    title: "Service"
+    example:
+      name: "name"
+      company:
+        address:
+          country: "country"
+          city: "city"
+          streetAddress: "streetAddress"
+          postalCode: "postalCode"
+          name: "name"
+          stateProvince: "stateProvince"
+          id: 0
+        name: "name"
+        id: 6
+      id: 5
+      type: "ONOFF"
+  ServiceInstance:
+    type: "object"
+    properties:
+      capacity:
+        type: "number"
+      currentUsage:
+        type: "number"
+      endDate:
+        type: "string"
+        format: "date-time"
+      id:
+        type: "integer"
+        format: "int64"
+      name:
+        type: "string"
+      numberOfUnits:
+        type: "integer"
+        format: "int32"
+      offer:
+        $ref: "#/definitions/Offer"
+      overUsage:
+        type: "number"
+      overUsageQuota:
+        type: "number"
+      quotaOrigin:
+        type: "string"
+        enum:
+        - "SUBS"
+        - "OVER"
+      serviceOffering:
+        $ref: "#/definitions/ServiceOffering"
+      serviceType:
+        type: "string"
+        enum:
+        - "ONOFF"
+        - "SEAT_BASED"
+        - "USAGE_BASED"
+      startDate:
+        type: "string"
+        format: "date-time"
+      status:
+        type: "string"
+        enum:
+        - "NEW"
+        - "ACTIVE"
+        - "SUSPENDED"
+        - "FINISHED"
+        - "CANCELLED"
+      subscriberId:
+        type: "string"
+      subscription:
+        $ref: "#/definitions/Subsription"
+      type:
+        type: "string"
+        enum:
+        - "ONOFF"
+        - "SEAT_BASED"
+        - "USAGE_BASED"
+      version:
+        type: "integer"
+        format: "int64"
+    title: "ServiceInstance"
+    example:
+      serviceType: "ONOFF"
+      endDate: "2000-01-23T04:56:07.000+00:00"
+      quotaOrigin: "SUBS"
+      currentUsage: 2.027123023002321833274663731572218239307403564453125
+      subscriberId: "subscriberId"
+      subscription: null
+      type: "ONOFF"
+      version: 9
+      capacity: 3.61607674925191080461672754609026014804840087890625
+      offer:
+        recurrence:
+          length: 2
+          id: 5
+          recurrenceType: "SECONDLY"
+        secureId: "secureId"
+        trialPeriod: 9
+        price: 5.962133916683182377482808078639209270477294921875
+        name: "name"
+        company:
+          address:
+            country: "country"
+            city: "city"
+            streetAddress: "streetAddress"
+            postalCode: "postalCode"
+            name: "name"
+            stateProvince: "stateProvince"
+            id: 0
+          name: "name"
+          id: 6
+        openEnded: true
+        recurrenceCount: 7
+        id: 1
+      serviceOffering:
+        offer:
+          recurrence:
+            length: 2
+            id: 5
+            recurrenceType: "SECONDLY"
+          secureId: "secureId"
+          trialPeriod: 9
+          price: 5.962133916683182377482808078639209270477294921875
+          name: "name"
+          company:
+            address:
+              country: "country"
+              city: "city"
+              streetAddress: "streetAddress"
+              postalCode: "postalCode"
+              name: "name"
+              stateProvince: "stateProvince"
+              id: 0
+            name: "name"
+            id: 6
+          openEnded: true
+          recurrenceCount: 7
+          id: 1
+        quotaAmount: 4.9652184929849543237878606305457651615142822265625
+        unitName: "unitName"
+        price: 1.173074250955943309548956676735542714595794677734375
+        service:
+          name: "name"
+          company:
+            address:
+              country: "country"
+              city: "city"
+              streetAddress: "streetAddress"
+              postalCode: "postalCode"
+              name: "name"
+              stateProvince: "stateProvince"
+              id: 0
+            name: "name"
+            id: 6
+          id: 5
+          type: "ONOFF"
+        description: "description"
+        company:
+          address:
+            country: "country"
+            city: "city"
+            streetAddress: "streetAddress"
+            postalCode: "postalCode"
+            name: "name"
+            stateProvince: "stateProvince"
+            id: 0
+          name: "name"
+          id: 6
+        id: 1
+        overUsagePrice: 6.8468526983526398765889098285697400569915771484375
+        overUsageQuota: 7.4577447736837658709418974467553198337554931640625
+      numberOfUnits: 7
+      overUsage: 1.231513536777255612975068288506008684635162353515625
+      name: "name"
+      id: 4
+      overUsageQuota: 1.024645700144157789424070870154537260532379150390625
+      startDate: "2000-01-23T04:56:07.000+00:00"
+      status: "NEW"
+  ServiceInstanceResult:
+    type: "object"
+    properties:
+      capacity:
+        type: "number"
+      endDate:
+        type: "string"
+        format: "date-time"
+      id:
+        type: "integer"
+        format: "int64"
+      name:
+        type: "string"
+      overUsage:
+        type: "number"
+      type:
+        type: "string"
+      usage:
+        type: "number"
+    title: "ServiceInstanceResult"
+  ServiceOffering:
+    type: "object"
+    required:
+    - "offer"
+    - "quotaAmount"
+    properties:
+      company:
+        $ref: "#/definitions/Company"
+      description:
+        type: "string"
+      id:
+        type: "integer"
+        format: "int64"
+      offer:
+        $ref: "#/definitions/Offer"
+      overUsagePrice:
+        type: "number"
+      overUsageQuota:
+        type: "number"
+      price:
+        type: "number"
+      quotaAmount:
+        type: "number"
+      service:
+        $ref: "#/definitions/Service"
+      unitName:
+        type: "string"
+    title: "ServiceOffering"
+    example:
+      offer:
+        recurrence:
+          length: 2
+          id: 5
+          recurrenceType: "SECONDLY"
+        secureId: "secureId"
+        trialPeriod: 9
+        price: 5.962133916683182377482808078639209270477294921875
+        name: "name"
+        company:
+          address:
+            country: "country"
+            city: "city"
+            streetAddress: "streetAddress"
+            postalCode: "postalCode"
+            name: "name"
+            stateProvince: "stateProvince"
+            id: 0
+          name: "name"
+          id: 6
+        openEnded: true
+        recurrenceCount: 7
+        id: 1
+      quotaAmount: 4.9652184929849543237878606305457651615142822265625
+      unitName: "unitName"
+      price: 1.173074250955943309548956676735542714595794677734375
+      service:
+        name: "name"
+        company:
+          address:
+            country: "country"
+            city: "city"
+            streetAddress: "streetAddress"
+            postalCode: "postalCode"
+            name: "name"
+            stateProvince: "stateProvince"
+            id: 0
+          name: "name"
+          id: 6
+        id: 5
+        type: "ONOFF"
+      description: "description"
+      company:
+        address:
+          country: "country"
+          city: "city"
+          streetAddress: "streetAddress"
+          postalCode: "postalCode"
+          name: "name"
+          stateProvince: "stateProvince"
+          id: 0
+        name: "name"
+        id: 6
+      id: 1
+      overUsagePrice: 6.8468526983526398765889098285697400569915771484375
+      overUsageQuota: 7.4577447736837658709418974467553198337554931640625
+  ServiceOfferingResult:
+    type: "object"
+    properties:
+      capacity:
+        type: "string"
+      id:
+        type: "integer"
+        format: "int64"
+      name:
+        type: "string"
+      price:
+        type: "number"
+      type:
+        type: "string"
+      unitName:
+        type: "string"
+      unitsPerPrice:
+        type: "number"
+    title: "ServiceOfferingResult"
+  StartSubscriptionRequest:
+    type: "object"
+    properties:
+      apiKey:
+        type: "string"
+      callbackUrl:
+        type: "string"
+      couponCode:
+        type: "string"
+      offer:
+        $ref: "#/definitions/SubscriptionPlan"
+      paymentCard:
+        $ref: "#/definitions/PaymentCard"
+      subscriber:
+        $ref: "#/definitions/Subscriber"
+    title: "StartSubscriptionRequest"
+    example:
+      offer:
+        secureId: "secureId"
+        id: 0
+      paymentCard:
+        cvc: "cvc"
+        cardUserKey: "cardUserKey"
+        cardExpiry: "cardExpiry"
+        cardHolderName: "cardHolderName"
+        expireMonth: "expireMonth"
+        cardAlias: "cardAlias"
+        expireYear: "expireYear"
+        registerCard: 6
+        cardNumber: "cardNumber"
+        cardToken: "cardToken"
+      subscriber:
+        secureId: "secureId"
+        country: "country"
+        shippingCity: "shippingCity"
+        zipCode: "zipCode"
+        address: "address"
+        shippingName: "shippingName"
+        city: "city"
+        ip: "ip"
+        lastLoginDate: "lastLoginDate"
+        identityNumber: "identityNumber"
+        useBillingAddressForShipping: true
+        shippingCountry: "shippingCountry"
+        surname: "surname"
+        shippingZipCode: "shippingZipCode"
+        name: "name"
+        registrationDate: "registrationDate"
+        shippingAddress: "shippingAddress"
+        email: "email"
+        gsmNumber: "gsmNumber"
+      apiKey: "apiKey"
+      callbackUrl: "callbackUrl"
+      couponCode: "couponCode"
+  Subscriber:
+    type: "object"
+    properties:
+      address:
+        type: "string"
+      city:
+        type: "string"
+      country:
+        type: "string"
+      email:
+        type: "string"
+      gsmNumber:
+        type: "string"
+      identityNumber:
+        type: "string"
+      ip:
+        type: "string"
+      lastLoginDate:
+        type: "string"
+      name:
+        type: "string"
+      registrationDate:
+        type: "string"
+      secureId:
+        type: "string"
+      shippingAddress:
+        type: "string"
+      shippingCity:
+        type: "string"
+      shippingCountry:
+        type: "string"
+      shippingName:
+        type: "string"
+      shippingZipCode:
+        type: "string"
+      surname:
+        type: "string"
+      useBillingAddressForShipping:
+        type: "boolean"
+      zipCode:
+        type: "string"
+    title: "Subscriber"
+    example:
+      secureId: "secureId"
+      country: "country"
+      shippingCity: "shippingCity"
+      zipCode: "zipCode"
+      address: "address"
+      shippingName: "shippingName"
+      city: "city"
+      ip: "ip"
+      lastLoginDate: "lastLoginDate"
+      identityNumber: "identityNumber"
+      useBillingAddressForShipping: true
+      shippingCountry: "shippingCountry"
+      surname: "surname"
+      shippingZipCode: "shippingZipCode"
+      name: "name"
+      registrationDate: "registrationDate"
+      shippingAddress: "shippingAddress"
+      email: "email"
+      gsmNumber: "gsmNumber"
+  SubscriptionCreateResult:
+    type: "object"
+    properties:
+      payment:
+        $ref: "#/definitions/ChargingLog"
+      subscription:
+        $ref: "#/definitions/Subsription"
+    title: "SubscriptionCreateResult"
+    example:
+      payment:
+        parent: null
+        reason: "START"
+        authCode: "authCode"
+        subscriberSecureId: "subscriberSecureId"
+        appliedCoupon: 0
+        errorCode: "errorCode"
+        serviceInstanceId: 7
+        transactionId: "transactionId"
+        errorText: "errorText"
+        jobId: 5
+        companyId: 6
+        paymentId: "paymentId"
+        price: 2.3021358869347654518833223846741020679473876953125
+        currency: "currency"
+        invoiceId: 5
+        id: 1
+        subscriptionId: 9
+        createDate: "2000-01-23T04:56:07.000+00:00"
+        paymentGateway: "OFFLINE"
+        status: "NOT_PAID"
+      subscription:
+        cancelDate: "2000-01-23T04:56:07.000+00:00"
+        nextChargingDate: "2000-01-23T04:56:07.000+00:00"
+        appliedCoupon:
+          code: "code"
+          maxLimit: 5
+          currentUsage: 0
+          discountAmount: 6.02745618307040320615897144307382404804229736328125
+          company:
+            address:
+              country: "country"
+              city: "city"
+              streetAddress: "streetAddress"
+              postalCode: "postalCode"
+              name: "name"
+              stateProvince: "stateProvince"
+              id: 0
+            name: "name"
+            id: 6
+          discountType: "FIXED"
+          expireDate: "2000-01-23T04:56:07.000+00:00"
+          id: 1
+        endDate: "2000-01-23T04:56:07.000+00:00"
+        subscriberId: "subscriberId"
+        services:
+        - serviceType: "ONOFF"
+          endDate: "2000-01-23T04:56:07.000+00:00"
+          quotaOrigin: "SUBS"
+          currentUsage: 2.027123023002321833274663731572218239307403564453125
+          subscriberId: "subscriberId"
+          subscription: null
+          type: "ONOFF"
+          version: 9
+          capacity: 3.61607674925191080461672754609026014804840087890625
+          offer:
+            recurrence:
+              length: 2
+              id: 5
+              recurrenceType: "SECONDLY"
+            secureId: "secureId"
+            trialPeriod: 9
+            price: 5.962133916683182377482808078639209270477294921875
+            name: "name"
+            company:
+              address:
+                country: "country"
+                city: "city"
+                streetAddress: "streetAddress"
+                postalCode: "postalCode"
+                name: "name"
+                stateProvince: "stateProvince"
+                id: 0
+              name: "name"
+              id: 6
+            openEnded: true
+            recurrenceCount: 7
+            id: 1
+          serviceOffering:
+            offer:
+              recurrence:
+                length: 2
+                id: 5
+                recurrenceType: "SECONDLY"
+              secureId: "secureId"
+              trialPeriod: 9
+              price: 5.962133916683182377482808078639209270477294921875
+              name: "name"
+              company:
+                address:
+                  country: "country"
+                  city: "city"
+                  streetAddress: "streetAddress"
+                  postalCode: "postalCode"
+                  name: "name"
+                  stateProvince: "stateProvince"
+                  id: 0
+                name: "name"
+                id: 6
+              openEnded: true
+              recurrenceCount: 7
+              id: 1
+            quotaAmount: 4.9652184929849543237878606305457651615142822265625
+            unitName: "unitName"
+            price: 1.173074250955943309548956676735542714595794677734375
+            service:
+              name: "name"
+              company:
+                address:
+                  country: "country"
+                  city: "city"
+                  streetAddress: "streetAddress"
+                  postalCode: "postalCode"
+                  name: "name"
+                  stateProvince: "stateProvince"
+                  id: 0
+                name: "name"
+                id: 6
+              id: 5
+              type: "ONOFF"
+            description: "description"
+            company:
+              address:
+                country: "country"
+                city: "city"
+                streetAddress: "streetAddress"
+                postalCode: "postalCode"
+                name: "name"
+                stateProvince: "stateProvince"
+                id: 0
+              name: "name"
+              id: 6
+            id: 1
+            overUsagePrice: 6.8468526983526398765889098285697400569915771484375
+            overUsageQuota: 7.4577447736837658709418974467553198337554931640625
+          numberOfUnits: 7
+          overUsage: 1.231513536777255612975068288506008684635162353515625
+          name: "name"
+          id: 4
+          overUsageQuota: 1.024645700144157789424070870154537260532379150390625
+          startDate: "2000-01-23T04:56:07.000+00:00"
+          status: "NEW"
+        - serviceType: "ONOFF"
+          endDate: "2000-01-23T04:56:07.000+00:00"
+          quotaOrigin: "SUBS"
+          currentUsage: 2.027123023002321833274663731572218239307403564453125
+          subscriberId: "subscriberId"
+          subscription: null
+          type: "ONOFF"
+          version: 9
+          capacity: 3.61607674925191080461672754609026014804840087890625
+          offer:
+            recurrence:
+              length: 2
+              id: 5
+              recurrenceType: "SECONDLY"
+            secureId: "secureId"
+            trialPeriod: 9
+            price: 5.962133916683182377482808078639209270477294921875
+            name: "name"
+            company:
+              address:
+                country: "country"
+                city: "city"
+                streetAddress: "streetAddress"
+                postalCode: "postalCode"
+                name: "name"
+                stateProvince: "stateProvince"
+                id: 0
+              name: "name"
+              id: 6
+            openEnded: true
+            recurrenceCount: 7
+            id: 1
+          serviceOffering:
+            offer:
+              recurrence:
+                length: 2
+                id: 5
+                recurrenceType: "SECONDLY"
+              secureId: "secureId"
+              trialPeriod: 9
+              price: 5.962133916683182377482808078639209270477294921875
+              name: "name"
+              company:
+                address:
+                  country: "country"
+                  city: "city"
+                  streetAddress: "streetAddress"
+                  postalCode: "postalCode"
+                  name: "name"
+                  stateProvince: "stateProvince"
+                  id: 0
+                name: "name"
+                id: 6
+              openEnded: true
+              recurrenceCount: 7
+              id: 1
+            quotaAmount: 4.9652184929849543237878606305457651615142822265625
+            unitName: "unitName"
+            price: 1.173074250955943309548956676735542714595794677734375
+            service:
+              name: "name"
+              company:
+                address:
+                  country: "country"
+                  city: "city"
+                  streetAddress: "streetAddress"
+                  postalCode: "postalCode"
+                  name: "name"
+                  stateProvince: "stateProvince"
+                  id: 0
+                name: "name"
+                id: 6
+              id: 5
+              type: "ONOFF"
+            description: "description"
+            company:
+              address:
+                country: "country"
+                city: "city"
+                streetAddress: "streetAddress"
+                postalCode: "postalCode"
+                name: "name"
+                stateProvince: "stateProvince"
+                id: 0
+              name: "name"
+              id: 6
+            id: 1
+            overUsagePrice: 6.8468526983526398765889098285697400569915771484375
+            overUsageQuota: 7.4577447736837658709418974467553198337554931640625
+          numberOfUnits: 7
+          overUsage: 1.231513536777255612975068288506008684635162353515625
+          name: "name"
+          id: 4
+          overUsageQuota: 1.024645700144157789424070870154537260532379150390625
+          startDate: "2000-01-23T04:56:07.000+00:00"
+          status: "NEW"
+        version: 9
+        offer:
+          recurrence:
+            length: 2
+            id: 5
+            recurrenceType: "SECONDLY"
+          secureId: "secureId"
+          trialPeriod: 9
+          price: 5.962133916683182377482808078639209270477294921875
+          name: "name"
+          company:
+            address:
+              country: "country"
+              city: "city"
+              streetAddress: "streetAddress"
+              postalCode: "postalCode"
+              name: "name"
+              stateProvince: "stateProvince"
+              id: 0
+            name: "name"
+            id: 6
+          openEnded: true
+          recurrenceCount: 7
+          id: 1
+        company:
+          address:
+            country: "country"
+            city: "city"
+            streetAddress: "streetAddress"
+            postalCode: "postalCode"
+            name: "name"
+            stateProvince: "stateProvince"
+            id: 0
+          name: "name"
+          id: 6
+        id: 6
+        card:
+          cardAssociation: "cardAssociation"
+          cardFamily: "cardFamily"
+          cardUserKey: "cardUserKey"
+          cardBankCode: 0
+          cardBankName: "cardBankName"
+          binNumber: "binNumber"
+          cartType: "cartType"
+          cardAlias: "cardAlias"
+          id: 6
+          cardToken: "cardToken"
+        startDate: "2000-01-23T04:56:07.000+00:00"
+        status: "NEW"
+  SubscriptionPlan:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      secureId:
+        type: "string"
+    title: "SubscriptionPlan"
+    example:
+      secureId: "secureId"
+      id: 0
+  Subsription:
+    type: "object"
+    required:
+    - "company"
+    - "offer"
+    properties:
+      appliedCoupon:
+        $ref: "#/definitions/Coupon"
+      cancelDate:
+        type: "string"
+        format: "date-time"
+      card:
+        $ref: "#/definitions/SavedCard"
+      company:
+        $ref: "#/definitions/Company"
+      endDate:
+        type: "string"
+        format: "date-time"
+      id:
+        type: "integer"
+        format: "int64"
+      nextChargingDate:
+        type: "string"
+        format: "date-time"
+      offer:
+        $ref: "#/definitions/Offer"
+      services:
+        type: "array"
+        items:
+          $ref: "#/definitions/ServiceInstance"
+      startDate:
+        type: "string"
+        format: "date-time"
+      status:
+        type: "string"
+        enum:
+        - "NEW"
+        - "ACTIVE"
+        - "SUSPENDED"
+        - "FINISHED"
+        - "CANCELLED"
+      subscriberId:
+        type: "string"
+      version:
+        type: "integer"
+        format: "int64"
+    title: "Subsription"
+    example:
+      cancelDate: "2000-01-23T04:56:07.000+00:00"
+      nextChargingDate: "2000-01-23T04:56:07.000+00:00"
+      appliedCoupon:
+        code: "code"
+        maxLimit: 5
+        currentUsage: 0
+        discountAmount: 6.02745618307040320615897144307382404804229736328125
+        company:
+          address:
+            country: "country"
+            city: "city"
+            streetAddress: "streetAddress"
+            postalCode: "postalCode"
+            name: "name"
+            stateProvince: "stateProvince"
+            id: 0
+          name: "name"
+          id: 6
+        discountType: "FIXED"
+        expireDate: "2000-01-23T04:56:07.000+00:00"
+        id: 1
+      endDate: "2000-01-23T04:56:07.000+00:00"
+      subscriberId: "subscriberId"
+      services:
+      - serviceType: "ONOFF"
+        endDate: "2000-01-23T04:56:07.000+00:00"
+        quotaOrigin: "SUBS"
+        currentUsage: 2.027123023002321833274663731572218239307403564453125
+        subscriberId: "subscriberId"
+        subscription: null
+        type: "ONOFF"
+        version: 9
+        capacity: 3.61607674925191080461672754609026014804840087890625
+        offer:
+          recurrence:
+            length: 2
+            id: 5
+            recurrenceType: "SECONDLY"
+          secureId: "secureId"
+          trialPeriod: 9
+          price: 5.962133916683182377482808078639209270477294921875
+          name: "name"
+          company:
+            address:
+              country: "country"
+              city: "city"
+              streetAddress: "streetAddress"
+              postalCode: "postalCode"
+              name: "name"
+              stateProvince: "stateProvince"
+              id: 0
+            name: "name"
+            id: 6
+          openEnded: true
+          recurrenceCount: 7
+          id: 1
+        serviceOffering:
+          offer:
+            recurrence:
+              length: 2
+              id: 5
+              recurrenceType: "SECONDLY"
+            secureId: "secureId"
+            trialPeriod: 9
+            price: 5.962133916683182377482808078639209270477294921875
+            name: "name"
+            company:
+              address:
+                country: "country"
+                city: "city"
+                streetAddress: "streetAddress"
+                postalCode: "postalCode"
+                name: "name"
+                stateProvince: "stateProvince"
+                id: 0
+              name: "name"
+              id: 6
+            openEnded: true
+            recurrenceCount: 7
+            id: 1
+          quotaAmount: 4.9652184929849543237878606305457651615142822265625
+          unitName: "unitName"
+          price: 1.173074250955943309548956676735542714595794677734375
+          service:
+            name: "name"
+            company:
+              address:
+                country: "country"
+                city: "city"
+                streetAddress: "streetAddress"
+                postalCode: "postalCode"
+                name: "name"
+                stateProvince: "stateProvince"
+                id: 0
+              name: "name"
+              id: 6
+            id: 5
+            type: "ONOFF"
+          description: "description"
+          company:
+            address:
+              country: "country"
+              city: "city"
+              streetAddress: "streetAddress"
+              postalCode: "postalCode"
+              name: "name"
+              stateProvince: "stateProvince"
+              id: 0
+            name: "name"
+            id: 6
+          id: 1
+          overUsagePrice: 6.8468526983526398765889098285697400569915771484375
+          overUsageQuota: 7.4577447736837658709418974467553198337554931640625
+        numberOfUnits: 7
+        overUsage: 1.231513536777255612975068288506008684635162353515625
+        name: "name"
+        id: 4
+        overUsageQuota: 1.024645700144157789424070870154537260532379150390625
+        startDate: "2000-01-23T04:56:07.000+00:00"
+        status: "NEW"
+      - serviceType: "ONOFF"
+        endDate: "2000-01-23T04:56:07.000+00:00"
+        quotaOrigin: "SUBS"
+        currentUsage: 2.027123023002321833274663731572218239307403564453125
+        subscriberId: "subscriberId"
+        subscription: null
+        type: "ONOFF"
+        version: 9
+        capacity: 3.61607674925191080461672754609026014804840087890625
+        offer:
+          recurrence:
+            length: 2
+            id: 5
+            recurrenceType: "SECONDLY"
+          secureId: "secureId"
+          trialPeriod: 9
+          price: 5.962133916683182377482808078639209270477294921875
+          name: "name"
+          company:
+            address:
+              country: "country"
+              city: "city"
+              streetAddress: "streetAddress"
+              postalCode: "postalCode"
+              name: "name"
+              stateProvince: "stateProvince"
+              id: 0
+            name: "name"
+            id: 6
+          openEnded: true
+          recurrenceCount: 7
+          id: 1
+        serviceOffering:
+          offer:
+            recurrence:
+              length: 2
+              id: 5
+              recurrenceType: "SECONDLY"
+            secureId: "secureId"
+            trialPeriod: 9
+            price: 5.962133916683182377482808078639209270477294921875
+            name: "name"
+            company:
+              address:
+                country: "country"
+                city: "city"
+                streetAddress: "streetAddress"
+                postalCode: "postalCode"
+                name: "name"
+                stateProvince: "stateProvince"
+                id: 0
+              name: "name"
+              id: 6
+            openEnded: true
+            recurrenceCount: 7
+            id: 1
+          quotaAmount: 4.9652184929849543237878606305457651615142822265625
+          unitName: "unitName"
+          price: 1.173074250955943309548956676735542714595794677734375
+          service:
+            name: "name"
+            company:
+              address:
+                country: "country"
+                city: "city"
+                streetAddress: "streetAddress"
+                postalCode: "postalCode"
+                name: "name"
+                stateProvince: "stateProvince"
+                id: 0
+              name: "name"
+              id: 6
+            id: 5
+            type: "ONOFF"
+          description: "description"
+          company:
+            address:
+              country: "country"
+              city: "city"
+              streetAddress: "streetAddress"
+              postalCode: "postalCode"
+              name: "name"
+              stateProvince: "stateProvince"
+              id: 0
+            name: "name"
+            id: 6
+          id: 1
+          overUsagePrice: 6.8468526983526398765889098285697400569915771484375
+          overUsageQuota: 7.4577447736837658709418974467553198337554931640625
+        numberOfUnits: 7
+        overUsage: 1.231513536777255612975068288506008684635162353515625
+        name: "name"
+        id: 4
+        overUsageQuota: 1.024645700144157789424070870154537260532379150390625
+        startDate: "2000-01-23T04:56:07.000+00:00"
+        status: "NEW"
+      version: 9
+      offer:
+        recurrence:
+          length: 2
+          id: 5
+          recurrenceType: "SECONDLY"
+        secureId: "secureId"
+        trialPeriod: 9
+        price: 5.962133916683182377482808078639209270477294921875
+        name: "name"
+        company:
+          address:
+            country: "country"
+            city: "city"
+            streetAddress: "streetAddress"
+            postalCode: "postalCode"
+            name: "name"
+            stateProvince: "stateProvince"
+            id: 0
+          name: "name"
+          id: 6
+        openEnded: true
+        recurrenceCount: 7
+        id: 1
+      company:
+        address:
+          country: "country"
+          city: "city"
+          streetAddress: "streetAddress"
+          postalCode: "postalCode"
+          name: "name"
+          stateProvince: "stateProvince"
+          id: 0
+        name: "name"
+        id: 6
+      id: 6
+      card:
+        cardAssociation: "cardAssociation"
+        cardFamily: "cardFamily"
+        cardUserKey: "cardUserKey"
+        cardBankCode: 0
+        cardBankName: "cardBankName"
+        binNumber: "binNumber"
+        cartType: "cartType"
+        cardAlias: "cardAlias"
+        id: 6
+        cardToken: "cardToken"
+      startDate: "2000-01-23T04:56:07.000+00:00"
+      status: "NEW"
+  UsageNotification:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+    title: "UsageNotification"
+    example:
+      id: 0
+  User:
+    type: "object"
+    required:
+    - "activated"
+    - "login"
+    properties:
+      activated:
+        type: "boolean"
+      authorities:
+        type: "array"
+        items:
+          $ref: "#/definitions/Authority"
+      company:
+        $ref: "#/definitions/Company"
+      createdDate:
+        type: "string"
+        format: "date-time"
+      email:
+        type: "string"
+        minLength: 5
+        maxLength: 100
+      firstName:
+        type: "string"
+        minLength: 0
+        maxLength: 50
+      id:
+        type: "integer"
+        format: "int64"
+      imageUrl:
+        type: "string"
+        minLength: 0
+        maxLength: 256
+      langKey:
+        type: "string"
+        minLength: 2
+        maxLength: 5
+      lastModifiedDate:
+        type: "string"
+        format: "date-time"
+      lastName:
+        type: "string"
+        minLength: 0
+        maxLength: 50
+      login:
+        type: "string"
+        minLength: 1
+        maxLength: 50
+        pattern: "^[_'.@A-Za-z0-9-]*$"
+      resetDate:
+        type: "string"
+        format: "date-time"
+    title: "User"
